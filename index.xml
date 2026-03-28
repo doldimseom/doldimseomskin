@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+	<information>
+		<name>돌딤섬 공방 스킨</name>
+		<version>1.0</version>
+		<license>
+			<![CDATA[개인사용/무료배포 및 수정 자유]]>
+		</license>
+	</information>
+
+	<author>
+		<name>doldimseom</name>
+		<homepage>https://github.com/doldimseom/doldimseumsheet</homepage>
+		<email></email>
+	</author>
+
+	<variables>
+		<variablegroup name="헤더">
+			<variable>
+				<name>skinTheme</name>
+				<label><![CDATA[테마]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"beige", "label":"베이지", "value":"beige"},
+						{"name":"white", "label":"화이트", "value":"white"}
+					]
+				]]></option>
+				<default><![CDATA[beige]]></default>
+			</variable>
+			<variable>
+				<name>headerImage</name>
+				<label><![CDATA[배너 이미지 URL]]></label>
+				<type>STRING</type>
+				<default><![CDATA[]]></default>
+			</variable>
+			<variable>
+				<name>showTitle</name>
+				<label><![CDATA[블로그 제목 표시]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"show", "label":"표시", "value":"flex"},
+						{"name":"hide", "label":"숨김", "value":"none"}
+					]
+				]]></option>
+				<default><![CDATA[flex]]></default>
+			</variable>
+			<variable>
+				<name>showDesc</name>
+				<label><![CDATA[블로그 설명 표시]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"show", "label":"표시", "value":"block"},
+						{"name":"hide", "label":"숨김", "value":"none"}
+					]
+				]]></option>
+				<default><![CDATA[block]]></default>
+			</variable>
+		</variablegroup>
+
+		<variablegroup name="게시글 카드">
+			<variable>
+				<name>cardCols</name>
+				<label><![CDATA[카드 열 수]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"2", "label":"2열", "value":"2"},
+						{"name":"3", "label":"3열", "value":"3"}
+					]
+				]]></option>
+				<default><![CDATA[3]]></default>
+			</variable>
+			<variable>
+				<name>PointColor</name>
+				<label><![CDATA[가격 색상]]></label>
+				<type>COLOR</type>
+				<default><![CDATA[#2C2825]]></default>
+			</variable>
+			<variable>
+				<name>NewColor</name>
+				<label><![CDATA[NEW 뱃지 색상]]></label>
+				<type>COLOR</type>
+				<default><![CDATA[#2C2825]]></default>
+			</variable>
+			<variable>
+				<name>newDays</name>
+				<label><![CDATA[NEW 표시 기간 (일)]]></label>
+				<type>STRING</type>
+				<default><![CDATA[3]]></default>
+			</variable>
+			<variable>
+				<name>priceLabel</name>
+				<label><![CDATA[가격 표시]]></label>
+				<type>STRING</type>
+				<default><![CDATA[금액]]></default>
+			</variable>
+			<variable>
+				<name>showSummary</name>
+				<label><![CDATA[요약/부제목 표시]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"show", "label":"표시", "value":"block"},
+						{"name":"hide", "label":"숨김", "value":"none"}
+					]
+				]]></option>
+				<default><![CDATA[block]]></default>
+			</variable>
+			<variable>
+				<name>showUncategorized</name>
+				<label><![CDATA[미분류 글 표시]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"show", "label":"표시", "value":"show"},
+						{"name":"hide", "label":"숨김", "value":"hide"}
+					]
+				]]></option>
+				<default><![CDATA[show]]></default>
+			</variable>
+			<variable>
+				<name>cardRadius</name>
+				<label><![CDATA[카드 라운딩]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"on", "label":"ON", "value":"20px"},
+						{"name":"off", "label":"OFF", "value":"0px"}
+					]
+				]]></option>
+				<default><![CDATA[20px]]></default>
+			</variable>
+			<variable>
+				<name>postImgRadius</name>
+				<label><![CDATA[본문 이미지 라운딩]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"on", "label":"ON", "value":"14px"},
+						{"name":"off", "label":"OFF", "value":"0px"}
+					]
+				]]></option>
+				<default><![CDATA[14px]]></default>
+			</variable>
+		</variablegroup>
+
+		<variablegroup name="공지 기능">
+			<variable>
+				<name>infoTitle</name>
+				<label><![CDATA[공지사항 제목]]></label>
+				<type>STRING</type>
+				<default><![CDATA[공지사항]]></default>
+			</variable>
+			<variable>
+				<name>infoUrl</name>
+				<label><![CDATA[공지 1 URL]]></label>
+				<type>STRING</type>
+				<default><![CDATA[]]></default>
+			</variable>
+			<variable>
+				<name>infoUrl2</name>
+				<label><![CDATA[공지 2 URL]]></label>
+				<type>STRING</type>
+				<default><![CDATA[]]></default>
+			</variable>
+			<variable>
+				<name>infoUrl3</name>
+				<label><![CDATA[공지 3 URL]]></label>
+				<type>STRING</type>
+				<default><![CDATA[]]></default>
+			</variable>
+			<variable>
+				<name>infoScope</name>
+				<label><![CDATA[공지 표시 위치]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"home", "label":"홈에만", "value":"home"},
+						{"name":"all", "label":"모든 페이지", "value":"all"}
+					]
+				]]></option>
+				<default><![CDATA[home]]></default>
+			</variable>
+		</variablegroup>
+	</variables>
+
+	<default>
+		<recentEntries>10</recentEntries>
+		<recentComments>5</recentComments>
+		<recentTrackbacks>5</recentTrackbacks>
+		<itemsOnGuestbook>10</itemsOnGuestbook>
+		<tagsInCloud>30</tagsInCloud>
+		<sortInCloud>1</sortInCloud>
+		<expandComment>1</expandComment>
+		<expandTrackback>0</expandTrackback>
+		<lengthOfRecentNotice>25</lengthOfRecentNotice>
+		<lengthOfRecentEntry>27</lengthOfRecentEntry>
+		<lengthOfRecentComment>30</lengthOfRecentComment>
+		<lengthOfRecentTrackback>30</lengthOfRecentTrackback>
+		<lengthOfLink>30</lengthOfLink>
+		<showListOnCategory>1</showListOnCategory>
+		<showListOnArchive>1</showListOnArchive>
+		<contentWidth>900</contentWidth>
+	</default>
+
+</skin>

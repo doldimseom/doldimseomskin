@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[##_page_title_##]</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪨</text></svg>">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    :root { --point: [##_var_PointColor_##]; --new: [##_var_NewColor_##]; --card-cols: [##_var_cardCols_##]; --card-radius: [##_var_cardRadius_##]; --post-img-radius: [##_var_postImgRadius_##]; }
+    .site-title { display: [##_var_showTitle_##]; }
+    .site-desc { display: [##_var_showDesc_##]; }
+    .card-summary { display: [##_var_showSummary_##]; }
+  </style>
+</head>
+
+<body id="[##_body_id_##]" data-theme="[##_var_skinTheme_##]">
+<s_t3>
+
+  <!-- ══ 헤더 ══ -->
+  <header class="site-header">
+    <a href="[##_blog_link_##]" class="header-banner-wrap" id="header-banner-wrap">
+      <img class="header-banner-img" id="header-banner-img" src="" alt="">
+    </a>
+    <div class="header-body">
+      <a href="[##_blog_link_##]" class="header-profile-wrap" id="header-profile-wrap">
+        <img class="header-profile-img" id="header-profile-img" src="[##_image_##]" alt="프로필">
+      </a>
+      <div class="header-text">
+        <h1 class="site-title">
+          <a href="[##_blog_link_##]">[##_title_##]</a>
+        </h1>
+        <p class="site-desc">[##_desc_##]</p>
+      </div>
+      <div class="header-actions header-actions-pill" id="header-actions">
+        <button class="icon-btn" onclick="openCatModal()" title="카테고리">
+          <i data-lucide="folder"></i>
+        </button>
+        <a class="icon-btn" href="[##_blog_link_##]manage/newpost/?type=post&returnURL=%2Fmanage%2Fposts%2F" title="글쓰기">
+          <i data-lucide="pencil-line"></i>
+        </a>
+        <a class="icon-btn" href="[##_blog_link_##]manage" title="관리">
+          <i data-lucide="settings"></i>
+        </a>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+  </header>
+
+  <!-- ══ 본문 영역 ══ -->
+  <s_article_rep>
+
+    <!-- ── 홈: card-container (s_index_article_rep 밖, s_article_rep 안) ── -->
+    <div class="card-container" id="card-container">
+
+      <!-- ── 카드 수집소: 티스토리가 글 수만큼 반복, JS가 card-container로 재배치 ── -->
+      <s_index_article_rep>
+      <div class="ds-card-staging">
+      <a class="sheet-card ds-card"
+           href="[##_article_rep_link_##]"
+           data-category="[##_article_rep_category_##]">
+          <div class="card-thumb-wrap">
+            <div class="card-thumb-placeholder"></div>
+            <s_article_rep_thumbnail>
+            <img class="card-thumb"
+                 src="[##_article_rep_thumbnail_url_##]"
+                 alt="[##_article_rep_title_##]"
+                 loading="lazy">
+            </s_article_rep_thumbnail>
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <span class="card-name">[##_article_rep_title_##]</span>
+              <span class="card-badge">[##_article_rep_category_##]</span>
+            </div>
+            <p class="card-summary">[##_article_rep_summary_##]</p>
+            <p class="card-date">[##_article_rep_simple_date_##]</p>
+          </div>
+        </a>
+      </div>
+      </s_index_article_rep>
+
+    </div>
+
+    <!-- ── 게시글(퍼머링크) 영역 ── -->
+    <s_permalink_article_rep>
+
+      <div class="post-container">
+        <div class="post-meta">
+          <a class="post-cat-pill" href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
+        </div>
+        <h1 class="post-title" id="post-title">[##_article_rep_title_##]</h1>
+        <p class="post-subtitle" id="post-subtitle"></p>
+        <div class="post-meta-bottom">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="post-date">[##_article_rep_simple_date_##]</span>
+            <s_ad_div>
+            <div class="post-admin-inline">
+              <a class="post-admin-text" href="[##_s_ad_m_link_##]">수정</a>
+              <span class="post-admin-sep">·</span>
+              <a class="post-admin-text" href="#" onclick="[##_s_ad_d_onclick_##]; return false;">삭제</a>
+            </div>
+            </s_ad_div>
+          </div>
+          <button class="post-share-btn" onclick="copyPostLink()" title="링크 복사">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+        <div class="post-body">
+          [##_article_rep_desc_##]
+        </div>
+        <div class="post-divider"></div>
+
+        <s_article_related>
+        <div class="post-related">
+          <p class="post-related-label">같은 카테고리 글</p>
+          <div class="post-related-grid">
+            <s_article_related_rep>
+            <a class="related-card" href="[##_article_related_rep_link_##]">
+              <div class="related-thumb-wrap">
+                <div class="related-thumb-placeholder"></div>
+                <s_article_related_rep_thumbnail>
+                <img class="related-thumb"
+                     src="[##_article_related_rep_thumbnail_link_##]"
+                     alt="[##_article_related_rep_title_##]"
+                     loading="lazy">
+                </s_article_related_rep_thumbnail>
+              </div>
+              <div class="related-body">
+                <p class="related-title">[##_article_related_rep_title_##]</p>
+                <p class="related-date">[##_article_related_rep_date_##]</p>
+              </div>
+            </a>
+            </s_article_related_rep>
+          </div>
+        </div>
+        </s_article_related>
+      </div>
+
+    </s_permalink_article_rep>
+
+  </s_article_rep>
+
+  <!-- ══ 안내사항 (fetch) ══ -->
+  <div id="info-section-wrap" class="info-section"></div>
+
+  <!-- ══ 카테고리 모달 ══ -->
+  <div id="cat-modal-overlay" onclick="closeCatModal()" style="display:none;"></div>
+  <div id="cat-modal" style="display:none;">
+    <div class="cat-modal-header">
+      <p class="cat-modal-title">카테고리</p>
+      <button class="cat-modal-close" onclick="closeCatModal()">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="cat-modal-body">
+      <s_sidebar_element>
+        [##_category_list_##]
+      </s_sidebar_element>
+    </div>
+  </div>
+
+  <!-- ══ 푸터 ══ -->
+  <footer>
+    <div class="site-footer">
+      <span class="footer-copy">© [##_blogger_##]</span>
+      <span class="footer-credit">Designed by Doldimseom</span>
+    </div>
+  </footer>
+
+</s_t3>
+
+<script>
+(function () {
+
+  /* ── NEW 판단 — 날짜 기준 ── */
+  var newDays = parseInt('[##_var_newDays_##]', 10) || 3;
+  function isNewPost(dateText) {
+    /* "2026. 3. 27." 형식 파싱 */
+    var m = dateText.replace(/\s/g, '').match(/^(\d{4})\.(\d{1,2})\.(\d{1,2})\.?$/);
+    if (!m) return false;
+    var postDate = new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3]));
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var diff = (today - postDate) / (1000 * 60 * 60 * 24);
+    return diff >= 0 && diff < newDays;
+  }
+
+  /* ── 인라인 배경색/텍스트색 처리 ── */
+  function fixInlineColors(root) {
+    if (!root) return;
+    root.querySelectorAll('[style]').forEach(function(el) {
+      var bg = el.style.backgroundColor;
+      var fg = el.style.color;
+      /* 흰 배경 → 투명 */
+      if (bg && /^(#fff(fff)?|white|rgb\(255,\s*255,\s*255\))$/i.test(bg.replace(/\s/g,''))) {
+        el.style.backgroundColor = 'transparent';
+      }
+      /* 검정 텍스트 → 테마 기본색으로 초기화 */
+      if (fg && /^(#000(000)?|black|rgb\(0,\s*0,\s*0\))$/i.test(fg.replace(/\s/g,''))) {
+        el.style.color = '';
+      }
+    });
+  }
+
+  /* ── 관련글/카테고리 다른 글 제목 태그 제거 ── */
+  function cleanTagsFromTitles() {
+    var selectors = [
+      '.related-title',
+      '.another_category th a',
+      '.another_category td a'
+    ];
+    selectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(el) {
+        var raw = el.textContent || '';
+        var clean = raw
+          .replace(/\[OPEN\]/gi, '')
+          .replace(/\[CLOSE\]/gi, '')
+          .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
+          .replace(/\[SUB:[^\]]+\]/gi, '')
+          .trim();
+        if (clean !== raw.trim()) el.textContent = clean;
+      });
+    });
+  }
+
+  /* ── 레이아웃 전환 ── */
+  window.setLayout = function (mode) {
+    var grids = document.querySelectorAll('.card-grid');
+    var btnGrid = document.getElementById('btn-grid');
+    var btnList = document.getElementById('btn-list');
+    grids.forEach(function(grid) {
+      if (mode === 'list') grid.classList.add('layout-list');
+      else grid.classList.remove('layout-list');
+    });
+    if (btnGrid) btnGrid.classList.toggle('active', mode !== 'list');
+    if (btnList) btnList.classList.toggle('active', mode === 'list');
+    localStorage.setItem('ds-layout', mode);
+  };
+
+  /* ── 카드 수집 + 카테고리별 섹션 구성 ── */
+  function buildSections() {
+    var container = document.getElementById('card-container');
+    if (!container) return;
+
+    /* 페이지 전체에서 카드 수집 */
+    var cards = Array.from(document.querySelectorAll('.ds-card'));
+    if (cards.length === 0) return;
+
+    /* 카테고리별 분류 */
+    var showUncat = '[##_var_showUncategorized_##]'.trim();
+
+    /* 전체 카테고리 수 미리 파악 (숨김 처리 전 기준) */
+    var allCats = new Set();
+    cards.forEach(function(card) {
+      var cat = (card.getAttribute('data-category') || '').trim();
+      var isUncat = !cat || cat === '카테고리 없음';
+      allCats.add(isUncat ? '__미분류__' : cat);
+    });
+    var sections = {};
+    var order = [];
+    cards.forEach(function(card) {
+      var cat = (card.getAttribute('data-category') || '').trim();
+      var isUncat = !cat || cat === '카테고리 없음';
+      var key = isUncat ? '__미분류__' : cat;
+      /* 카테고리 없는 글 숨김 설정 시 제외 */
+      if (isUncat && showUncat === 'hide') return;
+      if (!sections[key]) {
+        sections[key] = [];
+        order.push(key);
+      }
+      sections[key].push(card);
+    });
+
+    /* 가나다 정렬, 미분류는 맨 뒤 */
+    order.sort(function(a, b) {
+      if (a === '__미분류__') return 1;
+      if (b === '__미분류__') return -1;
+      return a.localeCompare(b, 'ko');
+    });
+
+    /* 툴바 삽입 */
+    var toolbar = document.createElement('div');
+    toolbar.className = 'list-toolbar';
+    toolbar.innerHTML =
+      '<div class="toolbar-right">' +
+        '<button class="layout-btn active" id="btn-grid" onclick="setLayout(\'grid\')" title="그리드"><i data-lucide="layout-grid"></i></button>' +
+        '<button class="layout-btn" id="btn-list" onclick="setLayout(\'list\')" title="리스트"><i data-lucide="layout-list"></i></button>' +
+      '</div>';
+    container.appendChild(toolbar);
+
+    /* 카테고리별 섹션 생성 */
+    var isCatPage = location.pathname.indexOf('/category/') === 0;
+    var showCatLabel = allCats.size > 1 || isCatPage;
+    order.forEach(function(key) {
+      if (showCatLabel) {
+        var label = document.createElement('p');
+        label.className = 'category-label';
+        label.textContent = key === '__미분류__' ? '미분류' : key;
+        container.appendChild(label);
+      }
+      var grid = document.createElement('div');
+      grid.className = 'card-grid';
+      sections[key].forEach(function(card) {
+        grid.appendChild(card);
+      });
+      container.appendChild(grid);
+    });
+
+    /* 수집소(staging) 제거 */
+    document.querySelectorAll('.ds-card-staging').forEach(function(el) {
+      el.parentNode.removeChild(el);
+    });
+
+    /* 카드 이동 완료 후 커미션 파싱 실행 */
+    initCards();
+    collectNewCategories();
+  }
+
+  /* ── 제목 파싱 — 커미션 배지 + 가격 삽입 ── */
+  function initCards() {
+    var cards = document.querySelectorAll('.ds-card');
+    cards.forEach(function (card) {
+      var nameEl    = card.querySelector('.card-name');
+      var thumbWrap = card.querySelector('.card-thumb-wrap');
+      var cardBody  = card.querySelector('.card-body');
+      var summaryEl = card.querySelector('.card-summary');
+      if (!nameEl) return;
+
+      /* 요약 — SUB 없을 때 26자 표시, SUB 있으면 부제목으로 교체 */
+      if (summaryEl) {
+        var raw = summaryEl.textContent || '';
+        summaryEl.textContent = raw.length > 26 ? raw.slice(0, 26) : raw;
+      }
+
+      var rawTitle = nameEl.textContent || '';
+
+      /* 태그 파싱 */
+      var isOpen     = /\[OPEN\]/i.test(rawTitle);
+      var isClose    = /\[CLOSE\]/i.test(rawTitle);
+      var priceMatch = rawTitle.match(/\[PRICE[:\s]*([0-9,]+)\]/i);
+      var price      = priceMatch ? priceMatch[1] : '';
+      var subMatch   = rawTitle.match(/\[SUB:([^\]]+)\]/i);
+      var sub        = subMatch ? subMatch[1].trim() : '';
+
+      /* 제목에서 태그 제거 */
+      var cleanTitle = rawTitle
+        .replace(/\[OPEN\]/gi, '')
+        .replace(/\[CLOSE\]/gi, '')
+        .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
+        .replace(/\[SUB:[^\]]+\]/gi, '')
+        .trim();
+      nameEl.textContent = cleanTitle;
+
+      /* 부제목 있으면 요약 교체 */
+      if (sub && summaryEl) {
+        summaryEl.textContent = sub;
+      }
+
+      /* OPEN / CLOSE + NEW 배지 — flex 컨테이너로 묶기 */
+      var dateEl = card.querySelector('.card-date');
+      var hasNew = dateEl && isNewPost(dateEl.textContent);
+      if ((isOpen || isClose || hasNew) && thumbWrap) {
+        var badgeWrap = document.createElement('div');
+        badgeWrap.className = 'card-badge-wrap';
+        if (isOpen) {
+          var b = document.createElement('span');
+          b.className = 'commission-badge open';
+          b.textContent = 'OPEN';
+          badgeWrap.appendChild(b);
+        } else if (isClose) {
+          var b = document.createElement('span');
+          b.className = 'commission-badge close';
+          b.textContent = 'CLOSE';
+          badgeWrap.appendChild(b);
+          card.classList.add('is-closed');
+        }
+        if (hasNew) {
+          var nb = document.createElement('span');
+          nb.className = 'commission-badge new-post';
+          nb.textContent = 'NEW';
+          badgeWrap.appendChild(nb);
+        }
+        thumbWrap.appendChild(badgeWrap);
+      }
+
+      /* 날짜 행 — 링크 복사 버튼 삽입 */
+      if (dateEl && cardBody) {
+        var dateRow = document.createElement('div');
+        dateRow.className = 'card-date-row';
+        var dateSpan = document.createElement('span');
+        dateSpan.className = 'card-date';
+        dateSpan.textContent = dateEl.textContent;
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'card-link-btn';
+        copyBtn.title = '링크 복사';
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+        var cardHref = card.getAttribute('href') || '';
+        copyBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var url = cardHref.startsWith('http') ? cardHref : location.origin + cardHref;
+          navigator.clipboard.writeText(url).then(function() {
+            showCopyToast();
+          });
+        });
+        dateRow.appendChild(dateSpan);
+        dateRow.appendChild(copyBtn);
+        dateEl.parentNode.replaceChild(dateRow, dateEl);
+      }
+
+      /* 가격 행 */
+      if (price && cardBody) {
+        var n = parseInt(price.replace(/,/g, ''), 10);
+        var priceRow = document.createElement('div');
+        priceRow.className = 'card-price-row';
+        priceRow.innerHTML =
+          '<span class="card-price-label">[##_var_priceLabel_##]</span>' +
+          '<span class="card-price-value has-point">' +
+          n.toLocaleString('ko-KR') + '원</span>';
+        cardBody.appendChild(priceRow);
+      }
+    });
+  }
+
+  /* ── 카테고리 모달 ── */
+
+  /* buildSections/initCards 완료 후 NEW인 카테고리명 수집 */
+  var newCategories = new Set();
+  function collectNewCategories() {
+    document.querySelectorAll('.ds-card').forEach(function(card) {
+      var dateEl = card.querySelector('.card-date');
+      var cat = (card.getAttribute('data-category') || '').trim();
+      if (cat && dateEl && isNewPost(dateEl.textContent)) {
+        newCategories.add(cat);
+      }
+    });
+  }
+
+  /* 카테고리 모달 NEW 뱃지 삽입 — 최초 1회 */
+  var catModalNewDone = false;
+  function applyNewToCatModal() {
+    if (catModalNewDone) return;
+    catModalNewDone = true;
+    document.querySelectorAll('.cat-modal-body li a').forEach(function(a) {
+      if (a.querySelector('.cat-modal-new-badge')) return;
+      /* 텍스트 노드에서 카테고리명 추출 */
+      var catName = '';
+      var textNodes = [];
+      a.childNodes.forEach(function(node) {
+        if (node.nodeType === 3) { catName += node.textContent; textNodes.push(node); }
+      });
+      catName = catName.trim();
+      if (!catName || !newCategories.has(catName)) return;
+
+      /* 카테고리명 텍스트 노드를 span으로 교체 */
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = catName;
+      var badge = document.createElement('span');
+      badge.className = 'cat-modal-new-badge';
+      badge.textContent = 'NEW';
+      var left = document.createElement('span');
+      left.className = 'cat-modal-left';
+      left.appendChild(nameSpan);
+      left.appendChild(badge);
+
+      /* 기존 텍스트 노드 제거 후 left 삽입 */
+      var cntEl = a.querySelector('.c_cnt');
+      textNodes.forEach(function(n) { a.removeChild(n); });
+      if (cntEl) {
+        a.insertBefore(left, cntEl);
+      } else {
+        a.appendChild(left);
+      }
+    });
+  }
+
+  window.openCatModal = function () {
+    var overlay = document.getElementById('cat-modal-overlay');
+    var modal   = document.getElementById('cat-modal');
+    if (!overlay || !modal) return;
+
+    applyNewToCatModal();
+
+    /* 오버레이 */
+    overlay.style.cssText = 'display:block !important; position:fixed !important; inset:0 !important; z-index:9000 !important; background:rgba(44,40,37,0.45) !important;';
+
+    /* 모달 */
+    modal.style.cssText = 'display:flex !important; position:fixed !important; top:50% !important; left:50% !important; transform:translate(-50%,-50%) !important; z-index:9001 !important; flex-direction:column !important; width:320px !important; max-width:calc(100vw - 40px) !important; max-height:70vh !important; overflow:hidden !important; background:var(--panel-bg) !important; border:1px solid var(--panel-border) !important; border-radius:var(--radius-lg) !important;';
+
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeCatModal = function () {
+    var overlay = document.getElementById('cat-modal-overlay');
+    var modal   = document.getElementById('cat-modal');
+    if (overlay) overlay.style.cssText = 'display:none !important;';
+    if (modal)   modal.style.cssText   = 'display:none !important;';
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeCatModal();
+  });
+
+  function restoreLayout() {
+    var saved = localStorage.getItem('ds-layout');
+    if (saved === 'list') setLayout('list');
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    buildSections();
+    restoreLayout();
+
+    /* ── 헤더 배너 이미지 ── */
+    var bannerUrl = '[##_var_headerImage_##]'.trim();
+    var bannerWrap = document.getElementById('header-banner-wrap');
+    var bannerImg  = document.getElementById('header-banner-img');
+    if (bannerUrl && bannerWrap && bannerImg) {
+      bannerImg.src = bannerUrl;
+      bannerWrap.style.display = 'block';
+    } else if (bannerWrap) {
+      bannerWrap.style.display = 'none';
+    }
+
+    /* ── 헤더 프로필 이미지 — 로드 성공 시 표시, 실패 시 숨김 ── */
+    var profileWrap = document.getElementById('header-profile-wrap');
+    var profileImg  = document.getElementById('header-profile-img');
+    if (profileImg && profileWrap) {
+      var src = profileImg.getAttribute('src') || '';
+      if (src && src !== window.location.href) {
+        profileImg.onload = function() {
+          profileWrap.style.display = 'flex';
+        };
+        profileImg.onerror = function() {
+          profileWrap.style.display = 'none';
+        };
+        if (profileImg.complete && profileImg.naturalWidth > 0) {
+          profileWrap.style.display = 'flex';
+        }
+      } else {
+        profileWrap.style.display = 'none';
+      }
+    }
+
+    /* ── 퍼머링크 제목 태그 제거 + SUB 파싱 ── */
+    var postTitleEl    = document.getElementById('post-title');
+    var postSubtitleEl = document.getElementById('post-subtitle');
+    if (postTitleEl) {
+      var raw = postTitleEl.textContent || '';
+      var subMatch = raw.match(/\[SUB:([^\]]+)\]/i);
+      var sub = subMatch ? subMatch[1].trim() : '';
+      var clean = raw
+        .replace(/\[OPEN\]/gi, '')
+        .replace(/\[CLOSE\]/gi, '')
+        .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
+        .replace(/\[SUB:[^\]]+\]/gi, '')
+        .trim();
+      postTitleEl.textContent = clean;
+      postTitleEl.style.visibility = 'visible';
+      if (sub && postSubtitleEl) {
+        postSubtitleEl.textContent = sub;
+      }
+    }
+
+    /* ── 브라우저 탭 제목 태그 제거 ── */
+    document.title = document.title
+      .replace(/\[OPEN\]/gi, '')
+      .replace(/\[CLOSE\]/gi, '')
+      .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
+      .replace(/\[SUB:[^\]]+\]/gi, '')
+      .trim();
+
+    if (window.lucide) lucide.createIcons();
+
+    fixInlineColors(document.querySelector('.post-body'));
+    cleanTagsFromTitles();
+
+    /* ── 안내사항 fetch ── */
+    loadInfoSection();
+
+    /* ── 카테고리 없는 글 관련글 fetch (렌더링 완료 후 실행) ── */
+    window.addEventListener('load', loadFallbackRelated);
+
+    /* ── 공감 텍스트 숨김 + 관련글 태그 정리 (React 동적 렌더링 대응) ── */
+    var observer = new MutationObserver(function() {
+      document.querySelectorAll('.txt_like').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      document.querySelectorAll('[id^="reaction-"]').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      cleanTagsFromTitles();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+  /* ── 링크 복사 토스트 — 모바일은 브라우저 알림에 위임 ── */
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+  function showCopyToast() {
+    if (isMobile()) return;
+    var toast = document.getElementById('ds-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'ds-toast';
+      toast.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--app-bg);font-size:12px;font-weight:500;padding:8px 18px;border-radius:20px;z-index:9999;opacity:0;transition:opacity 0.2s;pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = '링크가 복사되었습니다';
+    toast.style.opacity = '1';
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(function() {
+      toast.style.opacity = '0';
+    }, 2000);
+  }
+
+  window.copyPostLink = function() {
+    navigator.clipboard.writeText(location.href).then(function() {
+      showCopyToast();
+    });
+  };
+
+  function loadFallbackRelated() {
+    /* 게시글 페이지가 아니면 종료 */
+    var postContainer = document.querySelector('.post-container');
+    if (!postContainer) return;
+
+    /* 이미 관련글 영역이 있으면 종료 (카테고리 있는 글) */
+    if (postContainer.querySelector('.post-related')) return;
+
+    /* post-divider 위치 파악 */
+    var divider = postContainer.querySelector('.post-divider');
+    if (!divider) return;
+
+    /* 블로그 홈 fetch → 최근 카드 3개 추출 */
+    fetch('/')
+      .then(function(res) {
+        if (!res.ok) throw new Error('fetch fail');
+        return res.text();
+      })
+      .then(function(html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var cards = Array.from(doc.querySelectorAll('.ds-card')).slice(0, 3);
+        if (cards.length === 0) return;
+
+        /* 현재 게시글 URL과 같은 카드 제외 */
+        cards = cards.filter(function(card) {
+          return card.getAttribute('href') !== location.pathname;
+        }).slice(0, 3);
+        if (cards.length === 0) return;
+
+        /* 관련글 영역 생성 */
+        var related = document.createElement('div');
+        related.className = 'post-related';
+
+        var label = document.createElement('p');
+        label.className = 'post-related-label';
+        label.textContent = '최근 글';
+        related.appendChild(label);
+
+        var grid = document.createElement('div');
+        grid.className = 'post-related-grid';
+
+        cards.forEach(function(card) {
+          var href    = card.getAttribute('href') || '';
+          var titleEl = card.querySelector('.card-name');
+          var dateEl  = card.querySelector('.card-date');
+          var imgEl   = card.querySelector('.card-thumb');
+          var title   = titleEl ? titleEl.textContent.trim() : '';
+          var date    = dateEl  ? dateEl.textContent.trim()  : '';
+
+          var a = document.createElement('a');
+          a.className = 'related-card';
+          a.href = href;
+
+          var thumbWrap = document.createElement('div');
+          thumbWrap.className = 'related-thumb-wrap';
+          var placeholder = document.createElement('div');
+          placeholder.className = 'related-thumb-placeholder';
+          thumbWrap.appendChild(placeholder);
+          if (imgEl) {
+            var img = document.createElement('img');
+            img.className = 'related-thumb';
+            img.src = imgEl.src;
+            img.alt = title;
+            img.loading = 'lazy';
+            thumbWrap.appendChild(img);
+          }
+
+          var body = document.createElement('div');
+          body.className = 'related-body';
+          var titleP = document.createElement('p');
+          titleP.className = 'related-title';
+          titleP.textContent = title;
+          var dateP = document.createElement('p');
+          dateP.className = 'related-date';
+          dateP.textContent = date;
+          body.appendChild(titleP);
+          body.appendChild(dateP);
+
+          a.appendChild(thumbWrap);
+          a.appendChild(body);
+          grid.appendChild(a);
+        });
+
+        related.appendChild(grid);
+
+        /* post-divider 뒤에 삽입 */
+        divider.parentNode.insertBefore(related, divider.nextSibling);
+      })
+      .catch(function(e) {
+        console.warn('관련글 로드 실패:', e);
+      });
+  }
+
+  function loadInfoSection() {
+    var wrap = document.getElementById('info-section-wrap');
+    if (!wrap) return;
+
+    /* infoScope: home = 홈에만, all = 모든 페이지 */
+    var scope = '[##_var_infoScope_##]'.trim();
+    var isHome = !document.querySelector('.post-container');
+    if (scope === 'home' && !isHome) return;
+
+    var urls = [
+      '[##_var_infoUrl_##]'.trim(),
+      '[##_var_infoUrl2_##]'.trim(),
+      '[##_var_infoUrl3_##]'.trim()
+    ].filter(function(u) { return u; });
+
+    if (urls.length === 0) {
+      wrap.style.display = 'none';
+      return;
+    }
+
+    /* 각 URL fetch → 제목 + 본문 수집 */
+    var fetches = urls.map(function(url) {
+      return fetch(url)
+        .then(function(res) {
+          if (!res.ok) throw new Error('fetch fail');
+          return res.text();
+        })
+        .then(function(html) {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+          var titleEl = doc.querySelector('.tt_article_useless_p_margin .entry-title, h1.tt_article_useless_p_margin, .article-header h1, h2.title, .tit_post, #post-title');
+          var bodyEl  = doc.querySelector('.tt_article_useless_p_margin, .entry-content, .article_view, #article-view');
+          var rawTitle = titleEl ? titleEl.textContent.trim() : '안내사항';
+          var cleanTitle = rawTitle
+            .replace(/\[OPEN\]/gi, '')
+            .replace(/\[CLOSE\]/gi, '')
+            .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
+            .replace(/\[SUB:[^\]]+\]/gi, '')
+            .trim() || '안내사항';
+          return {
+            title: cleanTitle,
+            html:  bodyEl  ? bodyEl.innerHTML : ''
+          };
+        })
+        .catch(function() { return null; });
+    });
+
+    Promise.all(fetches).then(function(results) {
+      var valid = results.filter(function(r) { return r && r.html; });
+      if (valid.length === 0) return;
+
+      /* 섹션 라벨 */
+      var label = document.createElement('p');
+      label.className = 'info-section-label';
+      label.textContent = '[##_var_infoTitle_##]'.trim() || '안내사항';
+      wrap.appendChild(label);
+
+      /* 탭이 1개면 탭 없이 박스만 */
+      if (valid.length === 1) {
+        var box = document.createElement('div');
+        box.className = 'info-box info-box-fetched';
+        box.innerHTML = valid[0].html;
+        wrap.appendChild(box);
+        fixInlineColors(box);
+        return;
+      }
+
+      /* 탭 바 */
+      var tabBar = document.createElement('div');
+      tabBar.className = 'info-tab-bar';
+
+      /* 탭 박스 */
+      var tabBox = document.createElement('div');
+      tabBox.className = 'info-tab-box';
+
+      valid.forEach(function(item, i) {
+        /* 탭 버튼 */
+        var btn = document.createElement('button');
+        btn.className = 'info-tab-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = item.title;
+        btn.addEventListener('click', function() {
+          tabBar.querySelectorAll('.info-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+          tabBox.querySelectorAll('.info-tab-content').forEach(function(c) { c.classList.remove('active'); });
+          btn.classList.add('active');
+          tabBox.querySelectorAll('.info-tab-content')[i].classList.add('active');
+        });
+        tabBar.appendChild(btn);
+
+        /* 탭 콘텐츠 */
+        var content = document.createElement('div');
+        content.className = 'info-tab-content info-box-fetched' + (i === 0 ? ' active' : '');
+        content.innerHTML = item.html;
+        fixInlineColors(content);
+        tabBox.appendChild(content);
+      });
+
+      wrap.appendChild(tabBar);
+      wrap.appendChild(tabBox);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
