@@ -58,6 +58,12 @@
 				]]></option>
 				<default><![CDATA[block]]></default>
 			</variable>
+			<variable>
+				<name>xUrl</name>
+				<label><![CDATA[X(트위터) URL]]></label>
+				<type>STRING</type>
+				<default><![CDATA[]]></default>
+			</variable>
 		</variablegroup>
 
 		<variablegroup name="게시글 카드">
@@ -144,6 +150,12 @@
 					]
 				]]></option>
 				<default><![CDATA[14px]]></default>
+			</variable>
+			<variable>
+				<name>thumbFallback</name>
+				<label><![CDATA[기본 썸네일 이미지 URL]]></label>
+				<type>STRING</type>
+				<default><![CDATA[]]></default>
 			</variable>
 		</variablegroup>
 

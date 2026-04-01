@@ -36,6 +36,9 @@
         <p class="site-desc">[##_desc_##]</p>
       </div>
       <div class="header-actions header-actions-pill" id="header-actions">
+        <a class="icon-btn" id="header-x-btn" href="" target="_blank" title="X(트위터)" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="none" width="12" height="12"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
         <button class="icon-btn" onclick="openCatModal()" title="카테고리">
           <i data-lucide="folder"></i>
         </button>
@@ -89,6 +92,10 @@
     <s_permalink_article_rep>
 
       <div class="post-container">
+        <a class="post-back-btn" href="javascript:history.back()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polyline points="15 18 9 12 15 6"/></svg>
+          돌아가기
+        </a>
         <div class="post-meta">
           <a class="post-cat-pill" href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
         </div>
@@ -275,11 +282,27 @@
       sections[key].push(card);
     });
 
-    /* 가나다 정렬, 미분류는 맨 뒤 */
+    /* 티스토리 카테고리 모달 순서로 정렬, 미분류는 맨 뒤 */
+    var catModalOrder = Array.from(document.querySelectorAll('.cat-modal-body li a'))
+      .map(function(a) {
+        var text = '';
+        a.childNodes.forEach(function(node) {
+          if (node.nodeType === 3) text += node.textContent;
+        });
+        return text.trim();
+      })
+      .filter(Boolean);
+
     order.sort(function(a, b) {
       if (a === '__미분류__') return 1;
       if (b === '__미분류__') return -1;
-      return a.localeCompare(b, 'ko');
+      var ia = catModalOrder.indexOf(a);
+      var ib = catModalOrder.indexOf(b);
+      /* 모달에 없는 카테고리는 맨 뒤로 */
+      if (ia === -1 && ib === -1) return a.localeCompare(b, 'ko');
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
     });
 
     /* 툴바 삽입 */
@@ -321,6 +344,7 @@
   }
 
   /* ── 제목 파싱 — 커미션 배지 + 가격 삽입 ── */
+  var thumbFallbackUrl = '[##_var_thumbFallback_##]'.trim();
   function initCards() {
     var cards = document.querySelectorAll('.ds-card');
     cards.forEach(function (card) {
@@ -329,6 +353,16 @@
       var cardBody  = card.querySelector('.card-body');
       var summaryEl = card.querySelector('.card-summary');
       if (!nameEl) return;
+
+      /* 기본 썸네일 — 썸네일 없고 URL 설정된 경우 */
+      if (thumbFallbackUrl && thumbWrap && !thumbWrap.querySelector('.card-thumb')) {
+        var fallbackImg = document.createElement('img');
+        fallbackImg.className = 'card-thumb';
+        fallbackImg.src = thumbFallbackUrl;
+        fallbackImg.alt = '';
+        fallbackImg.loading = 'lazy';
+        thumbWrap.appendChild(fallbackImg);
+      }
 
       /* 요약 — SUB 없을 때 26자 표시, SUB 있으면 부제목으로 교체 */
       if (summaryEl) {
@@ -512,6 +546,18 @@
   document.addEventListener('DOMContentLoaded', function () {
     buildSections();
     restoreLayout();
+
+    /* ── 헤더 X 버튼 ── */
+    var xUrl = '[##_var_xUrl_##]'.trim();
+    var xBtn = document.getElementById('header-x-btn');
+    if (xBtn) {
+      if (xUrl) {
+        xBtn.href = xUrl;
+        xBtn.style.display = 'flex';
+      } else {
+        xBtn.style.display = 'none';
+      }
+    }
 
     /* ── 헤더 배너 이미지 ── */
     var bannerUrl = '[##_var_headerImage_##]'.trim();

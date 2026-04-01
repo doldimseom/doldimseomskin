@@ -438,6 +438,14 @@ cursor: pointer;
 padding: 0;
 flex-shrink: 0;
 transition: border-color 0.15s, color 0.15s;
+/* 모바일 터치 타겟 확대 — 시각적 크기는 유지하면서 터치 영역만 넓힘 */
+position: relative;
+}
+
+.card-link-btn::after {
+content: '';
+position: absolute;
+inset: -11px;
 }
 
 .card-link-btn:hover {
@@ -655,6 +663,27 @@ font-weight: 300;
   max-width: 720px;
   margin: 0 auto;
   padding: 24px 28px 80px;
+}
+
+/* 돌아가기 버튼 */
+.post-back-btn {
+display: flex;
+align-items: center;
+gap: 5px;
+font-size: 11px;
+color: var(--text-dim);
+text-decoration: none;
+margin-bottom: 14px;
+width: fit-content;
+transition: color 0.15s;
+}
+
+.post-back-btn:hover {
+color: var(--text);
+}
+
+.post-back-btn svg {
+stroke: currentColor;
 }
 
 /* 카테고리 pill */
