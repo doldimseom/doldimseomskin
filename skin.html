@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[##_page_title_##]</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪨</text></svg>">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.469.0"></script>
   <link rel="stylesheet" href="./style.css">
   <style>
     :root { --point: [##_var_PointColor_##]; --new: [##_var_NewColor_##]; --card-cols: [##_var_cardCols_##]; --card-radius: [##_var_cardRadius_##]; --post-img-radius: [##_var_postImgRadius_##]; }
@@ -197,6 +196,17 @@
   }
 
   /* ── 인라인 배경색/텍스트색 처리 ── */
+  /* 테마가 자동 삽입하는 색상 목록 — rgb() 형태로 비교 (브라우저가 style.color를 rgb로 정규화) */
+  var themeTextRgb = [
+    'rgb(0,0,0)',         /* #000000 */
+    'rgb(26,26,26)',      /* #1a1a1a */
+    'rgb(74,74,74)',      /* #4a4a4a */
+    'rgb(44,40,37)',      /* #2c2825 */
+    'rgb(51,51,51)',      /* #333333 */
+    'rgb(68,68,68)',      /* #444444 */
+    'rgb(85,85,85)',      /* #555555 */
+    'rgb(102,102,102)'   /* #666666 */
+  ];
   function fixInlineColors(root) {
     if (!root) return;
     root.querySelectorAll('[style]').forEach(function(el) {
@@ -206,9 +216,12 @@
       if (bg && /^(#fff(fff)?|white|rgb\(255,\s*255,\s*255\))$/i.test(bg.replace(/\s/g,''))) {
         el.style.backgroundColor = 'transparent';
       }
-      /* 검정 텍스트 → 테마 기본색으로 초기화 */
-      if (fg && /^(#000(000)?|black|rgb\(0,\s*0,\s*0\))$/i.test(fg.replace(/\s/g,''))) {
-        el.style.color = '';
+      /* 테마 기본 텍스트색 → 초기화 (사용자 지정 색상은 유지) */
+      if (fg) {
+        var fgNorm = fg.replace(/\s/g, '').toLowerCase();
+        if (themeTextRgb.indexOf(fgNorm) !== -1) {
+          el.style.color = '';
+        }
       }
     });
   }
@@ -865,6 +878,13 @@
   }
 })();
 </script>
+
+
+<!--
+  Credits
+  - Pretendard (SIL OFL 1.1) https://github.com/orioncactus/pretendard
+  - Lucide Icons (ISC) https://lucide.dev/license
+-->
 
 </body>
 </html>
