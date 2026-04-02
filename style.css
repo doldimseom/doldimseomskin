@@ -670,16 +670,16 @@ font-weight: 300;
 display: flex;
 align-items: center;
 gap: 5px;
-font-size: 11px;
-color: var(--text-dim);
-text-decoration: none;
+font-size: 11px !important;
+color: var(--text-dim) !important;
+text-decoration: none !important;
 margin-bottom: 14px;
 width: fit-content;
 transition: color 0.15s;
 }
 
 .post-back-btn:hover {
-color: var(--text);
+color: var(--text) !important;
 }
 
 .post-back-btn svg {
