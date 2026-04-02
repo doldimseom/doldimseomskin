@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <skin>
 	<information>
-		<name>돌딤섬 공방 스킨</name>
+		<name>돌딤섬 스킨</name>
 		<version>1.0.0</version>
 		<license>
 			<![CDATA[개인사용/무료배포 및 수정 자유]]>
@@ -15,6 +15,22 @@
 	</author>
 
 	<variables>
+		<variablegroup name="디자인">
+			<variable>
+				<name>fontScale</name>
+				<label><![CDATA[폰트 크기]]></label>
+				<type>SELECT</type>
+				<option><![CDATA[
+					[
+						{"name":"small", "label":"소", "value":"1.0"},
+						{"name":"medium", "label":"중", "value":"1.1"},
+						{"name":"large", "label":"대", "value":"1.2"}
+					]
+				]]></option>
+				<default><![CDATA[1.0]]></default>
+			</variable>
+		</variablegroup>
+
 		<variablegroup name="헤더">
 			<variable>
 				<name>skinTheme</name>

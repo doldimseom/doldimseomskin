@@ -109,7 +109,7 @@ min-width: 0;
 }
 
 .site-title {
-font-size: 13px !important;
+font-size: calc(13px * var(--font-scale, 1.0)) !important;
 font-weight: 700;
 letter-spacing: -0.01em;
 color: var(--text);
@@ -120,7 +120,7 @@ gap: 8px;
 }
 
 .site-desc {
-font-size: 11px;
+font-size: calc(11px * var(--font-scale, 1.0));
 color: var(--text-dim);
 line-height: 1.75;
 font-weight: 300;
@@ -189,7 +189,7 @@ flex-shrink: 0;
 }
 
 .category-label {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--label-color);
@@ -312,7 +312,7 @@ flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: calc(24px * var(--font-scale, 1.0));
   color: var(--label-color);
 }
 
@@ -328,7 +328,7 @@ flex-shrink: 0;
 }
 
 .commission-badge {
-  font-size: 9px;
+  font-size: calc(9px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.1em;
   padding: 3px 9px;
@@ -373,7 +373,7 @@ flex-shrink: 0;
 }
 
 .card-name {
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
@@ -381,7 +381,7 @@ flex-shrink: 0;
 }
 
 .card-badge {
-  font-size: 8px;
+  font-size: calc(8px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.08em;
   padding: 2px 7px;
@@ -400,7 +400,7 @@ flex-shrink: 0;
 }
 
 .card-summary {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--text-dim);
   line-height: 1.65;
   font-weight: 300;
@@ -410,7 +410,7 @@ flex-shrink: 0;
 }
 
 .card-date {
-  font-size: 10px;
+  font-size: calc(10px * var(--font-scale, 1.0));
   color: var(--label-color);
   letter-spacing: 0.02em;
   margin-top: 2px;
@@ -466,7 +466,7 @@ color: var(--text);
 }
 
 .card-price-label {
-  font-size: 9px;
+  font-size: calc(9px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--label-color);
@@ -474,7 +474,7 @@ color: var(--text);
 }
 
 .card-price-value {
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
@@ -499,7 +499,7 @@ display: none;
 }
 
 .info-section-label {
-font-size: 11px;
+font-size: calc(11px * var(--font-scale, 1.0));
 font-weight: 700;
 letter-spacing: 0.1em;
 color: var(--text);
@@ -515,7 +515,7 @@ margin-bottom: 0;
 }
 
 .info-tab-btn {
-font-size: 11px;
+font-size: calc(11px * var(--font-scale, 1.0));
 font-weight: 700;
 letter-spacing: 0.06em;
 padding: 6px 14px;
@@ -572,7 +572,7 @@ padding: 22px 26px;
 }
 
 .info-box p {
-font-size: 12px;
+font-size: calc(12px * var(--font-scale, 1.0));
 color: var(--text-dim);
 line-height: 2;
 font-weight: 300;
@@ -588,7 +588,7 @@ text-underline-offset: 2px;
 
 /* fetch된 안내사항 본문 서식 */
 .info-box-fetched * {
-font-size: 12px;
+font-size: calc(12px * var(--font-scale, 1.0));
 color: var(--text-dim);
 line-height: 2;
 font-weight: 300;
@@ -621,7 +621,7 @@ margin: 4px 0 8px;
 .info-box-fetched ul { list-style: disc; }
 .info-box-fetched ol { list-style: decimal; }
 .info-box-fetched li {
-font-size: 12px;
+font-size: calc(12px * var(--font-scale, 1.0));
 color: var(--text-dim);
 line-height: 2;
 font-weight: 300;
@@ -642,13 +642,13 @@ font-weight: 300;
 }
 
 .footer-copy {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--label-color);
   font-weight: 300;
 }
 
 .footer-credit {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--label-color);
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -670,7 +670,7 @@ font-weight: 300;
 display: flex;
 align-items: center;
 gap: 5px;
-font-size: 11px !important;
+font-size: calc(11px * var(--font-scale, 1.0)) !important;
 color: var(--text-dim) !important;
 text-decoration: none !important;
 margin-bottom: 14px;
@@ -689,7 +689,7 @@ stroke: currentColor;
 /* 카테고리 pill */
 .post-cat-pill {
   display: inline-block;
-  font-size: 9px;
+  font-size: calc(9px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.1em;
   padding: 3px 10px;
@@ -721,7 +721,7 @@ stroke: currentColor;
 }
 
 .post-date {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--label-color);
   letter-spacing: 0.04em;
 }
@@ -733,7 +733,7 @@ stroke: currentColor;
 }
 
 .post-admin-text {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--label-color);
   text-decoration: none;
   transition: color 0.15s;
@@ -742,7 +742,7 @@ stroke: currentColor;
 .post-admin-text:hover { color: var(--text); }
 
 .post-admin-sep {
-  font-size: 10px;
+  font-size: calc(10px * var(--font-scale, 1.0));
   color: var(--panel-border);
 }
 
@@ -768,7 +768,7 @@ color: var(--text);
 
 /* 제목 */
 .post-title {
-  font-size: 15px !important;
+  font-size: calc(15px * var(--font-scale, 1.0)) !important;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
@@ -781,7 +781,7 @@ color: var(--text);
 
 /* 게시글 부제목 */
 #post-subtitle {
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   color: var(--text-dim);
   font-weight: 300;
   line-height: 1.7;
@@ -793,7 +793,7 @@ color: var(--text);
 
 /* 본문 — 티스토리 에디터 출력 */
 .post-body {
-  font-size: 15px;
+  font-size: calc(15px * var(--font-scale, 1.0));
   color: var(--text);
   line-height: 1.9;
   font-weight: 400;
@@ -801,14 +801,14 @@ color: var(--text);
 }
 
 .post-body h2 {
-  font-size: 18px;
+  font-size: calc(18px * var(--font-scale, 1.0));
   font-weight: 700;
   margin: 2em 0 0.6em;
   letter-spacing: -0.01em;
 }
 
 .post-body h3 {
-  font-size: 15px;
+  font-size: calc(15px * var(--font-scale, 1.0));
   font-weight: 700;
   margin: 1.6em 0 0.5em;
 }
@@ -901,7 +901,7 @@ background: transparent !important;
 
 .post-body code {
   font-family: monospace;
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   background: var(--input-bg);
   padding: 2px 6px;
   border-radius: 4px;
@@ -936,7 +936,7 @@ background: transparent !important;
 }
 
 .post-related-label {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--text);
@@ -987,7 +987,7 @@ background: transparent !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: calc(20px * var(--font-scale, 1.0));
 }
 
 .related-body {
@@ -995,7 +995,7 @@ background: transparent !important;
 }
 
 .related-title {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   font-weight: 700;
   color: var(--text);
   line-height: 1.5;
@@ -1007,7 +1007,7 @@ background: transparent !important;
 }
 
 .related-date {
-  font-size: 10px;
+  font-size: calc(10px * var(--font-scale, 1.0));
   color: var(--label-color);
 }
 
@@ -1069,7 +1069,7 @@ background: transparent !important;
 }
 
 .cat-modal-title {
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
@@ -1115,7 +1115,7 @@ background: transparent !important;
   align-items: center;
   justify-content: space-between;
   padding: 9px 20px;
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   color: var(--text-dim);
   font-weight: 400;
   transition: background 0.12s, color 0.12s;
@@ -1145,7 +1145,7 @@ gap: 6px;
 }
 
 .cat-modal-new-badge {
-font-size: 8px;
+font-size: calc(8px * var(--font-scale, 1.0));
 font-weight: 700;
 letter-spacing: 0.08em;
 padding: 2px 6px;
@@ -1175,7 +1175,7 @@ display: none;
 }
 
 .another_category h4 {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--label-color);
@@ -1205,7 +1205,7 @@ display: none;
 
 .another_category table th {
   padding: 14px 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale, 1.0));
   font-weight: 400;
   color: var(--text);
   text-align: left;
@@ -1222,14 +1222,14 @@ display: none;
 }
 
 .another_category table th span {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--label-color);
   font-weight: 300;
 }
 
 .another_category table td {
   padding: 14px 0;
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale, 1.0));
   color: var(--label-color);
   text-align: right;
   white-space: nowrap;
@@ -1238,5 +1238,5 @@ display: none;
 }
 
 /* 헤딩 태그 브라우저 기본 스타일 강제 덮어쓰기 */
-.post-title { font-size: 15px !important; }
-.site-title { font-size: 13px !important; }
+.post-title { font-size: calc(15px * var(--font-scale, 1.0)) !important; }
+.site-title { font-size: calc(13px * var(--font-scale, 1.0)) !important; }
