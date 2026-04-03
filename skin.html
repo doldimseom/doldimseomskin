@@ -91,7 +91,7 @@
     <s_permalink_article_rep>
 
       <div class="post-container">
-        <a class="post-back-btn" href="[##_blog_link_##]">
+        <a class="post-back-btn" href="#" onclick="dsGoBack(); return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polyline points="15 18 9 12 15 6"/></svg>
           돌아가기
         </a>
@@ -149,6 +149,17 @@
     </s_permalink_article_rep>
 
   </s_article_rep>
+
+  <!-- ══ 페이징 ══ -->
+  <s_paging>
+  <div id="ds-paging" class="ds-paging" style="display:none;">
+    <a [##_prev_page_##] class="[##_no_more_prev_##]">←</a>
+    <s_paging_rep>
+    <a [##_paging_rep_link_##]>[##_paging_rep_link_num_##]</a>
+    </s_paging_rep>
+    <a [##_next_page_##] class="[##_no_more_next_##]">→</a>
+  </div>
+  </s_paging>
 
   <!-- ══ 안내사항 (fetch) ══ -->
   <div id="info-section-wrap" class="info-section"></div>
@@ -286,8 +297,9 @@
       var cat = (card.getAttribute('data-category') || '').trim();
       var isUncat = !cat || cat === '카테고리 없음';
       var key = isUncat ? '__미분류__' : cat;
-      /* 카테고리 없는 글 숨김 설정 시 제외 */
-      if (isUncat && showUncat === 'hide') return;
+      /* 카테고리 없는 글 숨김 설정 시 제외 — 홈에서만 적용 */
+      var isHomePage = location.pathname === '/' || location.pathname === '';
+      if (isUncat && showUncat === 'hide' && isHomePage) return;
       if (!sections[key]) {
         sections[key] = [];
         order.push(key);
@@ -330,21 +342,41 @@
 
     /* 카테고리별 섹션 생성 */
     var isCatPage = location.pathname.indexOf('/category/') === 0;
-    var showCatLabel = allCats.size > 1 || isCatPage;
-    order.forEach(function(key) {
-      if (showCatLabel) {
-        var label = document.createElement('p');
-        label.className = 'category-label';
-        label.textContent = key === '__미분류__' ? '미분류' : key;
-        container.appendChild(label);
-      }
-      var grid = document.createElement('div');
-      grid.className = 'card-grid';
-      sections[key].forEach(function(card) {
-        grid.appendChild(card);
+    /* 분류 전체보기(/category 최상위)일 때는 구분 없이 라벨 하나만 */
+    var isAllCatPage = location.pathname === '/category' || location.pathname === '/category/';
+    var showCatLabel = (allCats.size > 1 || isCatPage) && !isAllCatPage;
+
+    if (isAllCatPage) {
+      /* 전체보기 라벨 1개 */
+      var allLabel = document.createElement('p');
+      allLabel.className = 'category-label';
+      allLabel.textContent = '분류 전체보기';
+      container.appendChild(allLabel);
+      /* 모든 카드를 카테고리 구분 없이 하나의 그리드에 */
+      var allGrid = document.createElement('div');
+      allGrid.className = 'card-grid';
+      order.forEach(function(key) {
+        sections[key].forEach(function(card) {
+          allGrid.appendChild(card);
+        });
       });
-      container.appendChild(grid);
-    });
+      container.appendChild(allGrid);
+    } else {
+      order.forEach(function(key) {
+        if (showCatLabel) {
+          var label = document.createElement('p');
+          label.className = 'category-label';
+          label.textContent = key === '__미분류__' ? '미분류' : key;
+          container.appendChild(label);
+        }
+        var grid = document.createElement('div');
+        grid.className = 'card-grid';
+        sections[key].forEach(function(card) {
+          grid.appendChild(card);
+        });
+        container.appendChild(grid);
+      });
+    }
 
     /* 수집소(staging) 제거 */
     document.querySelectorAll('.ds-card-staging').forEach(function(el) {
@@ -556,6 +588,25 @@
     if (saved === 'list') setLayout('list');
   }
 
+  /* ── 돌아가기 — 홈/카테고리만 기록, 게시글·관리 페이지는 제외 ── */
+  (function () {
+    var path = location.pathname;
+    var isHome = path === '/' || path === '';
+    var isCat  = path.indexOf('/category') === 0;
+    if (isHome || isCat) {
+      sessionStorage.setItem('ds-back-url', location.href);
+    }
+  })();
+
+  window.dsGoBack = function () {
+    var saved = sessionStorage.getItem('ds-back-url');
+    if (saved) {
+      location.href = saved;
+    } else {
+      location.href = '[##_blog_link_##]';
+    }
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
     buildSections();
     restoreLayout();
@@ -638,6 +689,13 @@
 
     /* ── 안내사항 fetch ── */
     loadInfoSection();
+
+    /* ── 페이징 — 홈 제외, 카테고리/전체보기에서만 표시 ── */
+    var pagingEl = document.getElementById('ds-paging');
+    if (pagingEl) {
+      var isHomePage = !document.querySelector('.post-container') && location.pathname === '/';
+      if (!isHomePage) pagingEl.style.display = 'flex';
+    }
 
     /* ── 카테고리 없는 글 관련글 fetch (렌더링 완료 후 실행) ── */
     window.addEventListener('load', loadFallbackRelated);
@@ -791,13 +849,22 @@
       '[##_var_infoUrl3_##]'.trim()
     ].filter(function(u) { return u; });
 
+    /* infoUrl에서 글 번호 추출 → 수정 URL 자동 생성 */
+    function makeEditUrlFromPostUrl(postUrl) {
+      if (!postUrl) return '';
+      var m = postUrl.match(/\/([0-9]+)\/?$/);
+      if (!m) return '';
+      var base = location.origin;
+      return base + '/manage/newpost/' + m[1];
+    }
+
     if (urls.length === 0) {
       wrap.style.display = 'none';
       return;
     }
 
     /* 각 URL fetch → 제목 + 본문 수집 */
-    var fetches = urls.map(function(url) {
+    var fetches = urls.map(function(url, i) {
       return fetch(url)
         .then(function(res) {
           if (!res.ok) throw new Error('fetch fail');
@@ -817,11 +884,23 @@
             .trim() || '안내사항';
           return {
             title: cleanTitle,
-            html:  bodyEl  ? bodyEl.innerHTML : ''
+            html:  bodyEl  ? bodyEl.innerHTML : '',
+            editUrl: makeEditUrlFromPostUrl(urls[i])
           };
         })
         .catch(function() { return null; });
     });
+
+    /* 수정 버튼 생성 헬퍼 */
+    function makeEditBtn(editUrl) {
+      if (!editUrl) return null;
+      var btn = document.createElement('a');
+      btn.className = 'info-edit-btn';
+      btn.href = editUrl;
+      btn.title = '수정';
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+      return btn;
+    }
 
     Promise.all(fetches).then(function(results) {
       var valid = results.filter(function(r) { return r && r.html; });
@@ -837,7 +916,10 @@
       if (valid.length === 1) {
         var box = document.createElement('div');
         box.className = 'info-box info-box-fetched';
+        box.style.position = 'relative';
         box.innerHTML = valid[0].html;
+        var eb = makeEditBtn(valid[0].editUrl);
+        if (eb) box.appendChild(eb);
         wrap.appendChild(box);
         fixInlineColors(box);
         return;
@@ -850,6 +932,15 @@
       /* 탭 박스 */
       var tabBox = document.createElement('div');
       tabBox.className = 'info-tab-box';
+      tabBox.style.position = 'relative';
+
+      /* 탭 전환 시 수정 버튼 교체 함수 */
+      var currentEditBtn = null;
+      function updateEditBtn(editUrl) {
+        if (currentEditBtn) { currentEditBtn.parentNode && currentEditBtn.parentNode.removeChild(currentEditBtn); currentEditBtn = null; }
+        var eb = makeEditBtn(editUrl);
+        if (eb) { tabBox.appendChild(eb); currentEditBtn = eb; }
+      }
 
       valid.forEach(function(item, i) {
         /* 탭 버튼 */
@@ -861,6 +952,7 @@
           tabBox.querySelectorAll('.info-tab-content').forEach(function(c) { c.classList.remove('active'); });
           btn.classList.add('active');
           tabBox.querySelectorAll('.info-tab-content')[i].classList.add('active');
+          updateEditBtn(item.editUrl);
         });
         tabBar.appendChild(btn);
 
@@ -871,6 +963,9 @@
         fixInlineColors(content);
         tabBox.appendChild(content);
       });
+
+      /* 첫 탭 수정 버튼 초기 표시 */
+      updateEditBtn(valid[0].editUrl);
 
       wrap.appendChild(tabBar);
       wrap.appendChild(tabBox);

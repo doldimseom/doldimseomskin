@@ -486,6 +486,62 @@ color: var(--text);
 }
 
 /* ══════════════════════════════════════════
+   페이징
+══════════════════════════════════════════ */
+.ds-paging {
+  width: 100%;
+  padding: 8px 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.ds-paging a,
+.ds-paging strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: var(--radius-sm);
+  font-size: calc(12px * var(--font-scale, 1.0));
+  font-weight: 400;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  border: none;
+  background: none;
+}
+
+.ds-paging a {
+  color: var(--text-dim);
+}
+
+.ds-paging a:hover {
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+.ds-paging strong {
+  background: var(--input-bg);
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* 더 이상 페이지 없을 때 — 흐리게 + 클릭 불가 */
+.ds-paging a.no-more-prev,
+.ds-paging a.no-more-next {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .ds-paging { padding: 8px 0 28px; }
+}
+
+/* ══════════════════════════════════════════
    안내사항 / Credits
 ══════════════════════════════════════════ */
 .info-section {
@@ -561,6 +617,36 @@ padding: 22px 26px;
 
 .info-tab-content.active {
 display: block;
+}
+
+/* 공지 수정 버튼 */
+.info-edit-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+width: 26px;
+height: 26px;
+border-radius: 6px;
+border: 1px solid var(--panel-border);
+background: var(--panel-bg);
+color: var(--label-color);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: border-color 0.15s, color 0.15s;
+text-decoration: none;
+z-index: 2;
+}
+
+.info-edit-btn:hover {
+border-color: var(--accent);
+color: var(--text);
+}
+
+.info-edit-btn svg {
+width: 11px;
+height: 11px;
 }
 
 /* 탭 1개일 때 — 기존 박스 스타일 유지 */
