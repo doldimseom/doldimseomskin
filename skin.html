@@ -38,6 +38,9 @@
         <a class="icon-btn" id="header-x-btn" href="" target="_blank" title="X(트위터)" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="none" width="12" height="12"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
+        <a class="icon-btn" id="header-notice-btn" href="[##_blog_link_##]notice" title="공지사항" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12" stroke-width="1.6"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </a>
         <button class="icon-btn" onclick="openCatModal()" title="카테고리">
           <i data-lucide="folder"></i>
         </button>
@@ -149,6 +152,74 @@
     </s_permalink_article_rep>
 
   </s_article_rep>
+
+  <!-- ══ 공지사항 영역 ══ -->
+  <s_notice_rep>
+
+    <!-- ── 공지 목록 ── -->
+    <div class="card-container" id="notice-card-container">
+      <s_index_article_rep>
+      <div class="ds-notice-staging">
+        <a class="sheet-card ds-notice-card"
+           href="[##_notice_rep_link_##]"
+           data-notice="true">
+          <div class="card-thumb-wrap">
+            <div class="card-thumb-placeholder"></div>
+            <s_notice_rep_thumbnail>
+            <img class="card-thumb"
+                 src="[##_notice_rep_thumbnail_url_##]"
+                 alt="[##_notice_rep_title_##]"
+                 loading="lazy">
+            </s_notice_rep_thumbnail>
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <span class="card-name">[##_notice_rep_title_##]</span>
+              <span class="card-badge">공지사항</span>
+            </div>
+            <p class="card-summary">[##_notice_rep_summary_##]</p>
+            <p class="card-date">[##_notice_rep_date_##]</p>
+          </div>
+        </a>
+      </div>
+      </s_index_article_rep>
+    </div>
+
+    <!-- ── 공지 본문 ── -->
+    <s_permalink_article_rep>
+      <div class="post-container">
+        <a class="post-back-btn" href="#" onclick="dsGoBackNotice(); return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polyline points="15 18 9 12 15 6"/></svg>
+          돌아가기
+        </a>
+        <div class="post-meta">
+          <a class="post-cat-pill" href="[##_blog_link_##]notice">공지사항</a>
+        </div>
+        <h1 class="post-title" id="notice-post-title">[##_article_rep_title_##]</h1>
+        <p class="post-subtitle" id="notice-post-subtitle"></p>
+        <div class="post-meta-bottom">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="post-date">[##_article_rep_simple_date_##]</span>
+            <s_ad_div>
+            <div class="post-admin-inline">
+              <a class="post-admin-text" href="[##_s_ad_m_link_##]">수정</a>
+              <span class="post-admin-sep">·</span>
+              <a class="post-admin-text" href="#" onclick="[##_s_ad_d_onclick_##]; return false;">삭제</a>
+            </div>
+            </s_ad_div>
+          </div>
+          <button class="post-share-btn" onclick="copyPostLink()" title="링크 복사">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+        <div class="post-body">
+          [##_article_rep_desc_##]
+        </div>
+        <div class="post-divider"></div>
+      </div>
+    </s_permalink_article_rep>
+
+  </s_notice_rep>
 
   <!-- ══ 페이징 ══ -->
   <s_paging>
@@ -388,6 +459,99 @@
     collectNewCategories();
   }
 
+  /* ── 공지 카드 수집 + 섹션 구성 ── */
+  function buildNoticeSection() {
+    var container = document.getElementById('notice-card-container');
+    if (!container) return;
+
+    var cards = Array.from(document.querySelectorAll('.ds-notice-card'));
+    if (cards.length === 0) {
+      container.parentNode && container.parentNode.removeChild(container);
+      return;
+    }
+
+    var label = document.createElement('p');
+    label.className = 'category-label';
+    label.textContent = '공지사항';
+    container.appendChild(label);
+
+    var grid = document.createElement('div');
+    grid.className = 'card-grid';
+    cards.forEach(function(card) { grid.appendChild(card); });
+    container.appendChild(grid);
+
+    document.querySelectorAll('.ds-notice-staging').forEach(function(el) {
+      el.parentNode && el.parentNode.removeChild(el);
+    });
+
+    initNoticeCards();
+  }
+
+  /* ── 공지 카드 파싱 ── */
+  function initNoticeCards() {
+    var cards = document.querySelectorAll('.ds-notice-card');
+    cards.forEach(function(card) {
+      var nameEl    = card.querySelector('.card-name');
+      var thumbWrap = card.querySelector('.card-thumb-wrap');
+      var cardBody  = card.querySelector('.card-body');
+      var summaryEl = card.querySelector('.card-summary');
+      if (!nameEl) return;
+
+      if (thumbFallbackUrl && thumbWrap && !thumbWrap.querySelector('.card-thumb')) {
+        var fallbackImg = document.createElement('img');
+        fallbackImg.className = 'card-thumb';
+        fallbackImg.src = thumbFallbackUrl;
+        fallbackImg.alt = '';
+        fallbackImg.loading = 'lazy';
+        thumbWrap.appendChild(fallbackImg);
+      }
+
+      if (summaryEl) {
+        var raw = summaryEl.textContent || '';
+        summaryEl.textContent = raw.length > 26 ? raw.slice(0, 26) : raw;
+      }
+
+      var rawTitle = nameEl.textContent || '';
+      var cleanTitle = rawTitle
+        .replace(/\[OPEN\]/gi, '').replace(/\[CLOSE\]/gi, '')
+        .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '').replace(/\[SUB:[^\]]+\]/gi, '').trim();
+      nameEl.textContent = cleanTitle;
+
+      var dateEl = card.querySelector('.card-date');
+      var hasNew = dateEl && isNewPost(dateEl.textContent);
+      if (hasNew && thumbWrap) {
+        var badgeWrap = document.createElement('div');
+        badgeWrap.className = 'card-badge-wrap';
+        var nb = document.createElement('span');
+        nb.className = 'commission-badge new-post';
+        nb.textContent = 'NEW';
+        badgeWrap.appendChild(nb);
+        thumbWrap.appendChild(badgeWrap);
+      }
+
+      if (dateEl && cardBody) {
+        var dateRow = document.createElement('div');
+        dateRow.className = 'card-date-row';
+        var dateSpan = document.createElement('span');
+        dateSpan.className = 'card-date';
+        dateSpan.textContent = dateEl.textContent;
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'card-link-btn';
+        copyBtn.title = '링크 복사';
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+        var cardHref = card.getAttribute('href') || '';
+        copyBtn.addEventListener('click', function(e) {
+          e.preventDefault(); e.stopPropagation();
+          var url = cardHref.startsWith('http') ? cardHref : location.origin + cardHref;
+          navigator.clipboard.writeText(url).then(function() { showCopyToast(); });
+        });
+        dateRow.appendChild(dateSpan);
+        dateRow.appendChild(copyBtn);
+        dateEl.parentNode.replaceChild(dateRow, dateEl);
+      }
+    });
+  }
+
   /* ── 제목 파싱 — 커미션 배지 + 가격 삽입 ── */
   var thumbFallbackUrl = '[##_var_thumbFallback_##]'.trim();
   function initCards() {
@@ -588,12 +752,13 @@
     if (saved === 'list') setLayout('list');
   }
 
-  /* ── 돌아가기 — 홈/카테고리만 기록, 게시글·관리 페이지는 제외 ── */
+  /* ── 돌아가기 — 홈/카테고리/공지 목록만 기록, 게시글·관리 페이지는 제외 ── */
   (function () {
     var path = location.pathname;
-    var isHome = path === '/' || path === '';
-    var isCat  = path.indexOf('/category') === 0;
-    if (isHome || isCat) {
+    var isHome   = path === '/' || path === '';
+    var isCat    = path.indexOf('/category') === 0;
+    var isNotice = path === '/notice' || path === '/notice/';
+    if (isHome || isCat || isNotice) {
       sessionStorage.setItem('ds-back-url', location.href);
     }
   })();
@@ -607,8 +772,13 @@
     }
   };
 
+  window.dsGoBackNotice = function () {
+    location.href = '[##_blog_link_##]notice';
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
     buildSections();
+    buildNoticeSection();
     restoreLayout();
 
     /* ── 헤더 X 버튼 ── */
@@ -620,6 +790,26 @@
         xBtn.style.display = 'flex';
       } else {
         xBtn.style.display = 'none';
+      }
+    }
+
+    /* ── 헤더 공지 버튼 — 공지글 존재 시에만 표시 ── */
+    var noticeBtn = document.getElementById('header-notice-btn');
+    if (noticeBtn) {
+      var isNoticePage = location.pathname.indexOf('/notice') === 0;
+      if (isNoticePage) {
+        /* 공지 페이지에서는 항상 표시 */
+        noticeBtn.style.display = 'flex';
+      } else {
+        /* 그 외 페이지: /notice fetch로 실제 공지글 존재 여부 확인 */
+        fetch('/notice')
+          .then(function(res) { return res.text(); })
+          .then(function(html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            var hasCard = doc.querySelector('.ds-notice-card') !== null;
+            if (hasCard) noticeBtn.style.display = 'flex';
+          })
+          .catch(function() {});
       }
     }
 
@@ -671,6 +861,26 @@
       postTitleEl.style.visibility = 'visible';
       if (sub && postSubtitleEl) {
         postSubtitleEl.textContent = sub;
+      }
+    }
+
+    /* ── 공지 본문 제목 태그 제거 + SUB 파싱 ── */
+    var noticeTitleEl    = document.getElementById('notice-post-title');
+    var noticeSubtitleEl = document.getElementById('notice-post-subtitle');
+    if (noticeTitleEl) {
+      var rawN = noticeTitleEl.textContent || '';
+      var subMatchN = rawN.match(/\[SUB:([^\]]+)\]/i);
+      var subN = subMatchN ? subMatchN[1].trim() : '';
+      var cleanN = rawN
+        .replace(/\[OPEN\]/gi, '')
+        .replace(/\[CLOSE\]/gi, '')
+        .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
+        .replace(/\[SUB:[^\]]+\]/gi, '')
+        .trim();
+      noticeTitleEl.textContent = cleanN;
+      noticeTitleEl.style.visibility = 'visible';
+      if (subN && noticeSubtitleEl) {
+        noticeSubtitleEl.textContent = subN;
       }
     }
 
@@ -841,6 +1051,8 @@
     /* infoScope: home = 홈에만, all = 모든 페이지 */
     var scope = '[##_var_infoScope_##]'.trim();
     var isHome = !document.querySelector('.post-container');
+    var isNoticePage = location.pathname.indexOf('/notice') === 0;
+    if (isNoticePage) return;
     if (scope === 'home' && !isHome) return;
 
     var urls = [
@@ -873,8 +1085,8 @@
         .then(function(html) {
           var parser = new DOMParser();
           var doc = parser.parseFromString(html, 'text/html');
-          var titleEl = doc.querySelector('.tt_article_useless_p_margin .entry-title, h1.tt_article_useless_p_margin, .article-header h1, h2.title, .tit_post, #post-title');
-          var bodyEl  = doc.querySelector('.tt_article_useless_p_margin, .entry-content, .article_view, #article-view');
+          var titleEl = doc.querySelector('#notice-post-title, #post-title, .tt_article_useless_p_margin .entry-title, h1.tt_article_useless_p_margin, .article-header h1, h2.title, .tit_post');
+          var bodyEl  = doc.querySelector('.post-body, .tt_article_useless_p_margin, .entry-content, .article_view, #article-view');
           var rawTitle = titleEl ? titleEl.textContent.trim() : '안내사항';
           var cleanTitle = rawTitle
             .replace(/\[OPEN\]/gi, '')
@@ -882,6 +1094,25 @@
             .replace(/\[PRICE[:\s]*[0-9,]+\]/gi, '')
             .replace(/\[SUB:[^\]]+\]/gi, '')
             .trim() || '안내사항';
+          /* 본문에서 불필요한 하단 요소 제거 */
+          if (bodyEl) {
+            var removeSelectors = [
+              '.container_postbtn',       /* 공감/공유 버튼 */
+              '.another_category',        /* 카테고리의 다른 글 */
+              '.post-related',            /* 관련글 */
+              '.post-divider',            /* 구분선 */
+              '.post-meta-bottom',        /* 날짜/수정 행 */
+              '[data-tistory-react-app]', /* 댓글 React 앱 */
+              '#tistory-layer-notifier',  /* 티스토리 레이어 */
+              '.revenue_unit_wrap',       /* 광고 */
+              '#kakaoWrap'                /* 카카오 툴바 */
+            ];
+            removeSelectors.forEach(function(sel) {
+              bodyEl.querySelectorAll(sel).forEach(function(el) {
+                el.parentNode && el.parentNode.removeChild(el);
+              });
+            });
+          }
           return {
             title: cleanTitle,
             html:  bodyEl  ? bodyEl.innerHTML : '',
@@ -976,6 +1207,10 @@
 
 
 <!--
+  돌딤섬 스킨 v1.1.0
+  - 공지사항 목록/본문/안내사항 fetch 지원 추가
+  - 헤더 공지 벨 버튼 추가
+
   Credits
   - Pretendard (SIL OFL 1.1) https://github.com/orioncactus/pretendard
   - Lucide Icons (ISC) https://lucide.dev/license

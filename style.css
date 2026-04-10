@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   돌딤섬 공방 스킨 — style.css
+   돌딤섬 공방 스킨 — style.css  v1.1.0  v1.1.0
    테마: beige | white  →  [##_var_skinTheme_##]
    포인트 컬러: hex            →  [##_var_PointColor_##]
    카드 열 수: 2 | 3           →  [##_var_cardCols_##]
@@ -36,6 +36,7 @@
 }
 
 .ds-card-staging { display: none; }
+.ds-notice-staging { display: none; }
 
 /* ── 리셋 & 기본 ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
