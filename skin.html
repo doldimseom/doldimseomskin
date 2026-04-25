@@ -221,6 +221,63 @@
 
   </s_notice_rep>
 
+  <!-- ══ 보호글 영역 ══ -->
+  <s_article_protected>
+
+    <!-- ── 보호글 목록 ── -->
+    <div class="card-container" id="protected-card-container">
+      <s_index_article_rep>
+      <div class="ds-protected-staging">
+        <a class="sheet-card ds-protected-card"
+           href="[##_article_rep_link_##]"
+           data-category="[##_article_rep_category_##]"
+           data-protected="true">
+          <div class="card-thumb-wrap">
+            <div class="card-protected-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10V7a4 4 0 0 1 8 0v3"/><rect width="14" height="10" x="5" y="10" rx="2"/></svg>
+              <span>Protected</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <span class="card-name">[##_article_rep_title_##]</span>
+              <span class="card-badge">[##_article_rep_category_##]</span>
+            </div>
+            <p class="card-summary">보호된 글입니다.</p>
+            <p class="card-date">[##_article_rep_simple_date_##]</p>
+          </div>
+        </a>
+      </div>
+      </s_index_article_rep>
+    </div>
+
+    <!-- ── 보호글 비밀번호 입력 폼 ── -->
+    <s_permalink_article_rep>
+      <div class="post-container">
+        <a class="post-back-btn" href="#" onclick="dsGoBack(); return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polyline points="15 18 9 12 15 6"/></svg>
+          돌아가기
+        </a>
+        <div class="post-meta">
+          <a class="post-cat-pill" href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
+        </div>
+        <h1 class="post-title" style="visibility:visible;">[##_article_rep_title_##]</h1>
+        <div class="post-meta-bottom">
+          <span class="post-date">[##_article_rep_simple_date_##]</span>
+        </div>
+        <div class="protected-form-wrap">
+          <p class="protected-form-desc">비밀번호로 보호된 글입니다.<br>비밀번호를 입력해 주세요.</p>
+          <form class="protected-form-row" onsubmit="[##_article_dissolve_##]; return false;">
+            <input class="protected-input" type="password" id="[##_article_password_##]" placeholder="비밀번호">
+            <button class="protected-btn" type="submit">확인</button>
+          </form>
+        </div>
+        <div class="post-divider"></div>
+      </div>
+    </s_permalink_article_rep>
+
+  </s_article_protected>
+
   <!-- ══ 페이징 ══ -->
   <s_paging>
   <div id="ds-paging" class="ds-paging" style="display:none;">
@@ -348,8 +405,8 @@
     var container = document.getElementById('card-container');
     if (!container) return;
 
-    /* 페이지 전체에서 카드 수집 */
-    var cards = Array.from(document.querySelectorAll('.ds-card'));
+    /* 페이지 전체에서 카드 수집 — 일반 카드 + 보호글 카드 함께 */
+    var cards = Array.from(document.querySelectorAll('.ds-card, .ds-protected-card'));
     if (cards.length === 0) return;
 
     /* 카테고리별 분류 */
@@ -485,6 +542,47 @@
     });
 
     initNoticeCards();
+  }
+
+  /* ── 보호글 staging 정리 + 카드 파싱 ── */
+  function buildProtectedSection() {
+    document.querySelectorAll('.ds-protected-staging').forEach(function(el) {
+      el.parentNode && el.parentNode.removeChild(el);
+    });
+    var container = document.getElementById('protected-card-container');
+    if (container) container.parentNode && container.parentNode.removeChild(container);
+    initProtectedCards();
+  }
+
+  /* ── 보호글 카드 파싱 ── */
+  function initProtectedCards() {
+    var cards = document.querySelectorAll('.ds-protected-card');
+    cards.forEach(function(card) {
+      var cardBody  = card.querySelector('.card-body');
+
+      /* 날짜 행 — 링크 복사 버튼 */
+      var dateEl = card.querySelector('.card-date');
+      if (dateEl && cardBody) {
+        var dateRow = document.createElement('div');
+        dateRow.className = 'card-date-row';
+        var dateSpan = document.createElement('span');
+        dateSpan.className = 'card-date';
+        dateSpan.textContent = dateEl.textContent;
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'card-link-btn';
+        copyBtn.title = '링크 복사';
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+        var cardHref = card.getAttribute('href') || '';
+        copyBtn.addEventListener('click', function(e) {
+          e.preventDefault(); e.stopPropagation();
+          var url = cardHref.startsWith('http') ? cardHref : location.origin + cardHref;
+          navigator.clipboard.writeText(url).then(function() { showCopyToast(); });
+        });
+        dateRow.appendChild(dateSpan);
+        dateRow.appendChild(copyBtn);
+        dateEl.parentNode.replaceChild(dateRow, dateEl);
+      }
+    });
   }
 
   /* ── 공지 카드 파싱 ── */
@@ -779,6 +877,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     buildSections();
     buildNoticeSection();
+    buildProtectedSection();
     restoreLayout();
 
     /* ── 헤더 X 버튼 ── */
@@ -1207,9 +1306,8 @@
 
 
 <!--
-  돌딤섬 스킨 v1.1.0
-  - 공지사항 목록/본문/안내사항 fetch 지원 추가
-  - 헤더 공지 벨 버튼 추가
+  돌딤섬 스킨 v1.2.0
+  - 보호글 카드 목록 노출 + 비밀번호 입력 폼 지원 추가
 
   Credits
   - Pretendard (SIL OFL 1.1) https://github.com/orioncactus/pretendard
