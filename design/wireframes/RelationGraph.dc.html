@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin:0; background:#ffffff; color:#1a1a1a;
+      font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased; }
+    a { color:#1a1a1a; text-decoration:none; } a:hover { color:#000000; }
+    .ph { position:relative; background:#ededed; border:1px dashed #bfbfbf; overflow:hidden; }
+    .ph svg { position:absolute; inset:0; width:100%; height:100%; }
+    .bar { height:10px; background:#e6e6e6; border-radius:2px; }
+    .cap { font:11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color:#8a8a8a; letter-spacing:0.02em; }
+    .chip { display:inline-block; padding:3px 8px; border:1px solid #c9c9c9; font:11px/1.2 ui-monospace, Menlo, monospace; color:#6b6b6b; }
+    .note { border-left:2px dashed #c9c9c9; padding-left:10px;
+      font:11px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color:#8a8a8a; }
+    .btn { border:1px solid #1a1a1a; padding:8px 14px; font-size:12px; display:inline-flex; align-items:center; gap:6px; }
+    .rule { height:1px; background:#dcdcdc; }
+  </style>
+</helmet>
+
+<div style="width:620px; padding:32px; box-sizing:border-box; display:flex; flex-direction:column; gap:20px;">
+  <div style="display:flex; align-items:baseline; justify-content:space-between;">
+    <div style="font-size:15px; font-weight:600;">관계도 A안 — 노드 그래프</div>
+    <span class="chip">과몰입 ↑</span>
+  </div>
+
+  <svg viewBox="0 0 556 330" style="width:100%; height:330px; display:block; border:1px solid #ededed;">
+    <line x1="278" y1="165" x2="100" y2="72"  stroke="#c9c9c9" stroke-width="1"/>
+    <line x1="278" y1="165" x2="456" y2="72"  stroke="#c9c9c9" stroke-width="1"/>
+    <line x1="278" y1="165" x2="70"  y2="235" stroke="#c9c9c9" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="278" y1="165" x2="486" y2="235" stroke="#c9c9c9" stroke-width="1"/>
+    <line x1="278" y1="165" x2="278" y2="292" stroke="#1a1a1a" stroke-width="1.4"/>
+    <text x="176" y="105" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#8a8a8a">동료</text>
+    <text x="380" y="105" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#8a8a8a">채무</text>
+    <text x="150" y="215" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#a8a8a8">???</text>
+    <text x="410" y="215" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#8a8a8a">스승</text>
+    <text x="298" y="240" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#1a1a1a">숙적</text>
+    <circle cx="278" cy="165" r="44" fill="#ededed" stroke="#1a1a1a" stroke-width="1.4"/>
+    <text x="278" y="169" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">본인</text>
+    <circle cx="100" cy="72"  r="32" fill="#fff" stroke="#c9c9c9"/><text x="100" y="76" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#6b6b6b">캐릭 02</text>
+    <circle cx="456" cy="72"  r="32" fill="#fff" stroke="#c9c9c9"/><text x="456" y="76" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#6b6b6b">캐릭 05</text>
+    <circle cx="70"  cy="235" r="32" fill="#fff" stroke="#c9c9c9" stroke-dasharray="3 3"/><text x="70" y="239" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#a8a8a8">비공개</text>
+    <circle cx="486" cy="235" r="32" fill="#fff" stroke="#c9c9c9"/><text x="486" y="239" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#6b6b6b">캐릭 07</text>
+    <circle cx="278" cy="292" r="32" fill="#fff" stroke="#1a1a1a" stroke-width="1.4"/><text x="278" y="296" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#1a1a1a">캐릭 03</text>
+  </svg>
+
+  <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+    <span class="cap">실선 = 공개</span><span class="cap">점선 = 보호글 상대</span>
+    <span class="cap">굵은 선 = 강조 관계</span>
+  </div>
+
+  <div class="note">
+    ○ 좋은 점 — 한 장으로 판이 보인다. 갠홈 과몰입 연출로는 이게 제일 세다.<br>
+    △ 숙제 1 — 입력. 유저가 좌표를 못 찍으니 스킨이 자동 배치해야 한다(원형 균등 배치).<br>
+    △ 숙제 2 — 인원. 6명까지는 예쁘고 10명이 넘어가면 선이 엉킨다. 상한을 둘지 결정 필요.<br>
+    △ 숙제 3 — 모바일. 390px에서 원과 라벨이 겹친다. 좁으면 B안으로 떨어뜨리는 안 검토.
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

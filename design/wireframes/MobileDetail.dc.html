@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin:0; background:#ffffff; color:#1a1a1a;
+      font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased; }
+    a { color:#1a1a1a; text-decoration:none; } a:hover { color:#000000; }
+    .ph { position:relative; background:#ededed; border:1px dashed #bfbfbf; overflow:hidden; }
+    .ph svg { position:absolute; inset:0; width:100%; height:100%; }
+    .bar { height:10px; background:#e6e6e6; border-radius:2px; }
+    .cap { font:11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color:#8a8a8a; letter-spacing:0.02em; }
+    .chip { display:inline-block; padding:3px 8px; border:1px solid #c9c9c9; font:11px/1.2 ui-monospace, Menlo, monospace; color:#6b6b6b; }
+    .note { border-left:2px dashed #c9c9c9; padding-left:10px;
+      font:11px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color:#8a8a8a; }
+    .btn { border:1px solid #1a1a1a; padding:8px 14px; font-size:12px; display:inline-flex; align-items:center; gap:6px; }
+    .rule { height:1px; background:#dcdcdc; }
+  </style>
+</helmet>
+
+<div style="width:390px; padding:16px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="cap" style="margin-bottom:14px;">WF-02M · 모바일 · 캐릭터 개별 페이지</div>
+
+  <div style="display:flex; align-items:center; justify-content:space-between;">
+    <span class="cap">← 목록</span><span class="chip">캐릭터</span>
+  </div>
+  <div class="rule" style="margin:12px 0 22px;"></div>
+
+  <div class="ph" style="width:200px; height:267px; align-self:center;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div>
+
+  <div style="display:flex; flex-direction:column; gap:7px; align-items:center; margin:18px 0 20px;">
+    <div style="font-size:20px; font-weight:700; letter-spacing:-0.02em;">[캐릭터명]</div>
+    <div class="cap">[한 줄 소개]</div>
+  </div>
+
+  <div style="border-top:1px solid #dcdcdc;">
+    <div style="display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px solid #ededed;"><div class="cap" style="width:62px; flex-shrink:0;">소속</div><div style="font-size:12px;">[제3관측반]</div></div><div style="display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px solid #ededed;"><div class="cap" style="width:62px; flex-shrink:0;">출신 룰</div><div style="font-size:12px;">[CoC 7판]</div></div><div style="display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px solid #ededed;"><div class="cap" style="width:62px; flex-shrink:0;">다녀온 세션</div><div style="font-size:12px;">4</div></div><div style="display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px solid #ededed;"><div class="cap" style="width:62px; flex-shrink:0;">등장 로그</div><div style="font-size:12px;">[3건 →]</div></div>
+  </div>
+
+  <div style="margin-top:26px; display:flex; flex-direction:column; gap:12px;">
+    <div style="font-size:14px; font-weight:600;">소개</div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div class="bar" style="width:100%;"></div><div class="bar" style="width:95%;"></div>
+      <div class="bar" style="width:84%;"></div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div class="bar" style="width:90px;"></div>
+        <span style="background:#e0e0e0; color:#8a8a8a; font:10px/1.4 ui-monospace, Menlo, monospace; padding:3px 8px;">███ 블라인드</span>
+      </div>
+      <div class="bar" style="width:70%;"></div>
+    </div>
+  </div>
+
+  <div class="rule" style="margin:26px 0;"></div>
+
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:14px; font-weight:600;">다녀온 세션</div>
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; gap:12px;"><div style="display:flex; flex-direction:column; align-items:center; width:9px;"><div style="width:9px; height:9px; border:1px solid #1a1a1a; border-radius:50%; background:#fff; flex-shrink:0;"></div><div style="flex:1; width:1px; background:#dcdcdc; margin-top:5px;"></div></div><div style="flex:1; padding-bottom:20px; display:flex; flex-direction:column; gap:7px;"><div class="cap">2026.03.14 · CoC 7판</div><div style="font-size:13px; font-weight:600;">[시나리오명]</div><div style="display:flex; gap:6px; align-items:center;"><span class="chip">생환</span><span class="chip">PL 4</span><span class="cap" style="margin-left:auto;">로그 →</span></div></div></div><div style="display:flex; gap:12px;"><div style="display:flex; flex-direction:column; align-items:center; width:9px;"><div style="width:9px; height:9px; border:1px solid #1a1a1a; border-radius:50%; background:#fff; flex-shrink:0;"></div><div style="flex:1; width:1px; background:#dcdcdc; margin-top:5px;"></div></div><div style="flex:1; padding-bottom:20px; display:flex; flex-direction:column; gap:7px;"><div class="cap">2026.01.28 · CoC 7판</div><div style="font-size:13px; font-weight:600;">[시나리오명]</div><div style="display:flex; gap:6px; align-items:center;"><span class="chip">생환</span><span class="chip">PL 3</span><span class="cap" style="margin-left:auto;">로그 →</span></div></div></div><div style="display:flex; gap:12px;"><div style="display:flex; flex-direction:column; align-items:center; width:9px;"><div style="width:9px; height:9px; border:1px solid #1a1a1a; border-radius:50%; background:#fff; flex-shrink:0;"></div></div><div style="flex:1; padding-bottom:0px; display:flex; flex-direction:column; gap:7px;"><div class="cap">2025.11.02 · 더블크로스</div><div style="font-size:13px; font-weight:600;">[시나리오명]</div><div style="display:flex; gap:6px; align-items:center;"><span class="chip">로스트</span><span class="cap" style="margin-left:auto;">로그 →</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="rule" style="margin:26px 0;"></div>
+
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between;">
+      <div style="font-size:14px; font-weight:600;">관계</div>
+      <span class="cap">좁은 화면 = B안</span>
+    </div>
+    <div style="border-top:1px solid #dcdcdc;">
+      <div style="display:flex; gap:12px; align-items:center; padding:11px 0; border-bottom:1px solid #ededed;"><div class="ph" style="width:44px; height:59px; flex-shrink:0;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="flex:1; display:flex; flex-direction:column; gap:6px;"><div style="display:flex; gap:8px; align-items:center;"><span style="font-size:12px; font-weight:600;">[캐릭터 02]</span><span class="chip">동료</span></div><div class="bar" style="width:80%;"></div></div></div><div style="display:flex; gap:12px; align-items:center; padding:11px 0; border-bottom:1px solid #ededed;"><div class="ph" style="width:44px; height:59px; flex-shrink:0; border-style:dotted;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="flex:1; display:flex; flex-direction:column; gap:6px;"><div style="display:flex; gap:8px; align-items:center;"><span style="font-size:12px; font-weight:600;">[비공개]</span><span class="chip">???</span></div><div class="bar" style="width:80%;"></div></div></div><div style="display:flex; gap:12px; align-items:center; padding:11px 0; border-bottom:1px solid #ededed;"><div class="ph" style="width:44px; height:59px; flex-shrink:0;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="flex:1; display:flex; flex-direction:column; gap:6px;"><div style="display:flex; gap:8px; align-items:center;"><span style="font-size:12px; font-weight:600;">[캐릭터 07]</span><span class="chip">스승</span></div><div class="bar" style="width:80%;"></div></div></div>
+    </div>
+  </div>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin:26px 0 20px;">
+    <span class="cap">&lt; 이전</span><span class="btn" style="font-size:11px;">목록</span><span class="cap">다음 &gt;</span>
+  </div>
+
+  <div class="note">
+    ① 데스크탑과 같은 순서로 쌓는다 — 오갈 때 구조가 달라지지 않는다.<br>
+    ② 관계도만 A안(그래프) → B안(카드)으로 떨어진다. 390px에서 노드가 겹치기 때문.<br>
+    ③ 증명사진은 화면 폭을 다 쓰지 않는다 — 다 쓰면 첫 화면이 사진 하나로 끝난다.
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin:0; background:#ffffff; color:#1a1a1a;
+      font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased; }
+    a { color:#1a1a1a; text-decoration:none; } a:hover { color:#000000; }
+    .ph { position:relative; background:#ededed; border:1px dashed #bfbfbf; overflow:hidden; }
+    .ph svg { position:absolute; inset:0; width:100%; height:100%; }
+    .bar { height:10px; background:#e6e6e6; border-radius:2px; }
+    .cap { font:11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color:#8a8a8a; letter-spacing:0.02em; }
+    .chip { display:inline-block; padding:3px 8px; border:1px solid #c9c9c9; font:11px/1.2 ui-monospace, Menlo, monospace; color:#6b6b6b; }
+    .note { border-left:2px dashed #c9c9c9; padding-left:10px;
+      font:11px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color:#8a8a8a; }
+    .btn { border:1px solid #1a1a1a; padding:8px 14px; font-size:12px; display:inline-flex; align-items:center; gap:6px; }
+    .rule { height:1px; background:#dcdcdc; }
+  </style>
+</helmet>
+
+<div style="width:960px; padding:40px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="cap" style="margin-bottom:20px;">WF-04 · 홈 커버 — 모듈 순서를 유저가 고른다</div>
+
+  <div class="ph" style="width:100%; height:210px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg>
+    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+      <div style="font-size:22px; font-weight:700; color:#6b6b6b;">[블로그명]</div>
+      <div class="cap">[한 줄 설명 · 배너 이미지는 스킨 옵션 IMAGE]</div>
+    </div>
+  </div>
+
+  <div style="display:flex; align-items:center; justify-content:space-between; margin:22px 0 34px;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div class="ph" style="width:42px; height:42px; border-radius:50%;"></div>
+      <div style="display:flex; flex-direction:column; gap:5px;">
+        <div style="font-size:14px; font-weight:600;">[블로그명]</div>
+        <div class="cap">[프로필 한 줄]</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <span class="chip">CATEGORY</span><span class="chip">NOTICE</span><span class="chip">X</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:34px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><svg width="10" height="14" viewBox="0 0 10 14" fill="#c9c9c9"><circle cx="2" cy="2" r="1.4"/><circle cx="8" cy="2" r="1.4"/><circle cx="2" cy="7" r="1.4"/><circle cx="8" cy="7" r="1.4"/><circle cx="2" cy="12" r="1.4"/><circle cx="8" cy="12" r="1.4"/></svg><span class="chip">모듈 A · 캐릭터 리스트형</span><div style="flex:1; height:1px; background:#ededed;"></div></div>
+    <div style="display:flex; gap:14px; overflow:hidden;"><div style="flex-shrink:0; width:118px; display:flex; flex-direction:column; gap:8px;"><div class="ph" style="width:118px; height:157px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="cap" style="text-align:center;">[캐릭터 01]</div></div><div style="flex-shrink:0; width:118px; display:flex; flex-direction:column; gap:8px;"><div class="ph" style="width:118px; height:157px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="cap" style="text-align:center;">[캐릭터 02]</div></div><div style="flex-shrink:0; width:118px; display:flex; flex-direction:column; gap:8px;"><div class="ph" style="width:118px; height:157px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="cap" style="text-align:center;">[캐릭터 03]</div></div><div style="flex-shrink:0; width:118px; display:flex; flex-direction:column; gap:8px;"><div class="ph" style="width:118px; height:157px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="cap" style="text-align:center;">[캐릭터 04]</div></div><div style="flex-shrink:0; width:118px; display:flex; flex-direction:column; gap:8px;"><div class="ph" style="width:118px; height:157px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="cap" style="text-align:center;">[캐릭터 05]</div></div><div style="flex-shrink:0; width:118px; display:flex; flex-direction:column; gap:8px;"><div class="ph" style="width:118px; height:157px;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="cap" style="text-align:center;">[캐릭터 06]</div></div></div>
+  </div>
+
+  <div style="margin-bottom:34px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><svg width="10" height="14" viewBox="0 0 10 14" fill="#c9c9c9"><circle cx="2" cy="2" r="1.4"/><circle cx="8" cy="2" r="1.4"/><circle cx="2" cy="7" r="1.4"/><circle cx="8" cy="7" r="1.4"/><circle cx="2" cy="12" r="1.4"/><circle cx="8" cy="12" r="1.4"/></svg><span class="chip">모듈 B · 로그 썸네일형</span><div style="flex:1; height:1px; background:#ededed;"></div></div>
+    <div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:24px;"><div style="display:flex; flex-direction:column; gap:9px;"><div class="ph" style="aspect-ratio:16/9;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="font-size:12px; font-weight:600;">[세션 로그 01]</div><div class="cap">2026.01.14 · CoC 7판</div></div><div style="display:flex; flex-direction:column; gap:9px;"><div class="ph" style="aspect-ratio:16/9;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="font-size:12px; font-weight:600;">[세션 로그 02]</div><div class="cap">2026.02.14 · CoC 7판</div></div><div style="display:flex; flex-direction:column; gap:9px;"><div class="ph" style="aspect-ratio:16/9;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="font-size:12px; font-weight:600;">[세션 로그 03]</div><div class="cap">2026.03.14 · CoC 7판</div></div></div>
+  </div>
+
+  <div style="margin-bottom:34px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><svg width="10" height="14" viewBox="0 0 10 14" fill="#c9c9c9"><circle cx="2" cy="2" r="1.4"/><circle cx="8" cy="2" r="1.4"/><circle cx="2" cy="7" r="1.4"/><circle cx="8" cy="7" r="1.4"/><circle cx="2" cy="12" r="1.4"/><circle cx="8" cy="12" r="1.4"/></svg><span class="chip">모듈 C · 텍스트 공지사항</span><div style="flex:1; height:1px; background:#ededed;"></div></div>
+    <div style="border:1px solid #dcdcdc; padding:18px 20px; display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; gap:12px; align-items:center;"><span class="cap">01</span><div class="bar" style="width:62%;"></div></div>
+      <div style="display:flex; gap:12px; align-items:center;"><span class="cap">02</span><div class="bar" style="width:48%;"></div></div>
+      <div style="display:flex; gap:12px; align-items:center;"><span class="cap">03</span><div class="bar" style="width:55%;"></div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:34px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><svg width="10" height="14" viewBox="0 0 10 14" fill="#c9c9c9"><circle cx="2" cy="2" r="1.4"/><circle cx="8" cy="2" r="1.4"/><circle cx="2" cy="7" r="1.4"/><circle cx="8" cy="7" r="1.4"/><circle cx="2" cy="12" r="1.4"/><circle cx="8" cy="12" r="1.4"/></svg><span class="chip">모듈 D · 관계/페어 전시형</span><div style="flex:1; height:1px; background:#ededed;"></div></div>
+    <div style="display:flex; gap:24px;"><div style="flex:1; border:1px solid #dcdcdc; padding:14px; display:flex; gap:12px; align-items:center;"><div class="ph" style="width:74px; height:99px; flex-shrink:0;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="ph" style="width:74px; height:99px; flex-shrink:0;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="flex:1; display:flex; flex-direction:column; gap:7px;"><div style="font-size:12px; font-weight:600;">[페어명]</div><div class="bar" style="width:80%;"></div><div class="bar" style="width:60%;"></div></div></div><div style="flex:1; border:1px solid #dcdcdc; padding:14px; display:flex; gap:12px; align-items:center;"><div class="ph" style="width:74px; height:99px; flex-shrink:0;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div class="ph" style="width:74px; height:99px; flex-shrink:0;"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" stroke="#d4d4d4" stroke-width="0.6"/><line x1="100" y1="0" x2="0" y2="100" stroke="#d4d4d4" stroke-width="0.6"/></svg></div><div style="flex:1; display:flex; flex-direction:column; gap:7px;"><div style="font-size:12px; font-weight:600;">[페어명]</div><div class="bar" style="width:80%;"></div><div class="bar" style="width:60%;"></div></div></div></div>
+  </div>
+
+  <div class="note">
+    ① 네 모듈은 켜고 끄고 순서를 바꾸는 단위 — 유저가 고르는 건 「무엇을 먼저 보여줄까」 하나뿐.<br>
+    ② 조작 수단은 아직 두 갈래(제안서 §3.1): A안 티스토리 홈 커버 s_cover / B안 스킨 옵션 프리셋.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;s_cover 블록 자체는 실재한다(hELLO 스킨이 쓴다 — 티스토리-계약.md §3). 자유도만 미검증.<br>
+    ③ 모듈 D는 원본 제안서의 「시나리오 갤러리형」 자리 — 향유층 확정에 따라 페어 전시로 교체했다.
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
